@@ -5,3 +5,15 @@
     max-width: 100vw;
     border: 2px solid black;
 }
+
+.main-screen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.go-shopping{
+    color: white;
+    position: absolute;
+    font-size: 1.5em;
+}
