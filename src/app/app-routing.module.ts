@@ -9,8 +9,8 @@ import { Page404ErrorComponent } from './components/page404-error/page404-error.
 const routes: Routes = [
   {path:"articles",component:ArticlesComponent},
   {path:"home",component:HomeComponent},
+  {path:'',redirectTo:"/home",pathMatch:'full'},
   {path:"**",component:Page404ErrorComponent},
-  {path:"",redirectTo:"/home",pathMatch:'full'},
 ];
 
 @NgModule({
