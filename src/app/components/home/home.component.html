@@ -1,8 +1,27 @@
 <section id="home">
-    <span class="main-screen">
-        <a routerLink="/store" class="badge bg-secondary go-shopping">Go shopping!</a>
-        <img src="../../../assets/images/mattress.webp" class="img-fluid mattress-image" alt="Matress">
-    </span>
+    <div id="carouselHome" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item div-mattress active">
+            <a routerLink="/store" id="go-shopping" class="btn btn-light btn-outline-dark go-shopping">Go shopping!</a>
+            <img src="../../../assets/images/mattres.webp" class="d-block w-100" alt="Mattress">
+          </div>
+          <div class="carousel-item">
+            <img src="../../../assets/images/save_price.webp" class="d-block w-100" alt="Some discount prices">
+          </div>
+          <div class="carousel-item">
+            <img src="../../../assets/images/gift_card.webp" class="d-block w-100" alt="Gift card">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+      </div>
+    
     <br>
     <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illum aperiam expedita pariatur dignissimos eum quisquam doloribus error! Non hic ullam sapiente doloribus possimus molestias ut, aspernatur cum, laudantium reprehenderit numquam.
