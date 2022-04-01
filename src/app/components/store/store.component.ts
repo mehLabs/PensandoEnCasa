@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StoreService } from 'src/app/services/store.service';
 
 @Component({
   selector: 'app-store',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoreComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataStore: StoreService) { }
 
   ngOnInit(): void {
+    this.dataStore.obtenerDatos();
   }
 
 }
