@@ -8,6 +8,8 @@ import { ArticlesComponent } from './components/articles/articles.component';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { Page404ErrorComponent } from './components/page404-error/page404-error.component';
+import { CartComponent } from './components/cart/cart.component';
+import { StoreComponent } from './components/store/store.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { Page404ErrorComponent } from './components/page404-error/page404-error.
     ArticlesComponent,
     HomeComponent,
     FooterComponent,
-    Page404ErrorComponent
+    Page404ErrorComponent,
+    CartComponent,
+    StoreComponent
   ],
   imports: [
     BrowserModule,
