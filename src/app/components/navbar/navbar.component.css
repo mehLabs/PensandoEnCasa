@@ -26,3 +26,8 @@ i{
 #store-item{
     padding:8px 0;
 }
+
+.right-bar{
+    display: flex;
+    gap:5px
+}
