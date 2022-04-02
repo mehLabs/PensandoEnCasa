@@ -13,6 +13,7 @@ import { StoreComponent } from './components/store/store.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ArticleDetailsComponent } from './components/article-details/article-details.component';
 import { RouterModule } from '@angular/router';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RouterModule } from '@angular/router';
     Page404ErrorComponent,
     CartComponent,
     StoreComponent,
-    ArticleDetailsComponent
+    ArticleDetailsComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,

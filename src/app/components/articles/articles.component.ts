@@ -17,3 +17,7 @@ export class ArticlesComponent implements OnInit {
   }
 
 }
+
+export class products {
+  
+}

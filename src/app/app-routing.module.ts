@@ -11,7 +11,7 @@ import { ArticleDetailsComponent } from './components/article-details/article-de
 
 const routes: Routes = [
   {path:"articles",component:ArticlesComponent},
-  {path:"articles/:productId",component:ArticleDetailsComponent},
+  {path:"articles/article/:productId",component:ArticleDetailsComponent},
   {path:"home",component:HomeComponent},
   {path:"store",component:StoreComponent},
   {path:"cart",component:CartComponent},

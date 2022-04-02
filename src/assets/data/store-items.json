@@ -8,7 +8,9 @@
         "prize": 70,
         "name": "Colchón clásico chino berreta",
         "description": "Colchón de dos plazas",
-        "img": "./assets/images/products/colchon.webp"
+        "img": "./assets/images/products/colchon.webp",
+        "img1": "./assets/images/products/colchon1.webp",
+        "img2": "./assets/images/products/colchon2.webp"
     },
     {
         "id": 1,
@@ -17,7 +19,9 @@
         "prize": 18000,
         "name": "Sommier clásico",
         "description": "Sommier de dos plazas",
-        "img": "./assets/images/products/sommier.webp"
+        "img": "./assets/images/products/sommier.webp",
+        "img1": "./assets/images/products/sommier1.webp",
+        "img2": "./assets/images/products/sommier2.webp"
     }
     ]
 }
