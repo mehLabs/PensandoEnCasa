@@ -1,0 +1,23 @@
+{
+    "products": [
+
+    {
+        "id": 0,
+        "avaiable": true,
+        "item": "colchón",
+        "prize": 15000,
+        "name": "Colchón clásico",
+        "description": "Colchón de dos plazas",
+        "img": "./assets/images/products/colchon.webp"
+    },
+    {
+        "id": 1,
+        "avaiable": true,
+        "item": "sommier",
+        "prize": 18000,
+        "name": "Sommier clásico",
+        "description": "Sommier de dos plazas",
+        "img": "./assets/images/products/sommier.webp"
+    }
+    ]
+}
