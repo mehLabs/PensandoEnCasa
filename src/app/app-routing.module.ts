@@ -7,9 +7,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { Page404ErrorComponent } from './components/page404-error/page404-error.component';
 import { StoreComponent } from './components/store/store.component';
 import { CartComponent } from './components/cart/cart.component';
+import { ArticleDetailsComponent } from './components/article-details/article-details.component';
 
 const routes: Routes = [
   {path:"articles",component:ArticlesComponent},
+  {path:"articles/:productId",component:ArticleDetailsComponent},
   {path:"home",component:HomeComponent},
   {path:"store",component:StoreComponent},
   {path:"cart",component:CartComponent},

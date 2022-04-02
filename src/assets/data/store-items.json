@@ -5,8 +5,8 @@
         "id": 0,
         "avaiable": true,
         "item": "colchón",
-        "prize": 15000,
-        "name": "Colchón clásico",
+        "prize": 70,
+        "name": "Colchón clásico chino berreta",
         "description": "Colchón de dos plazas",
         "img": "./assets/images/products/colchon.webp"
     },

@@ -11,6 +11,8 @@ import { Page404ErrorComponent } from './components/page404-error/page404-error.
 import { CartComponent } from './components/cart/cart.component';
 import { StoreComponent } from './components/store/store.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ArticleDetailsComponent } from './components/article-details/article-details.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,13 @@ import { HttpClientModule } from '@angular/common/http';
     FooterComponent,
     Page404ErrorComponent,
     CartComponent,
-    StoreComponent
+    StoreComponent,
+    ArticleDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
