@@ -6,4 +6,13 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   constructor() { }
+
+  isLoggedIn(){
+    const loginToken = localStorage.getItem('loginToken');
+    const payload = atob(loginToken.split('.')[1]);
+    const parsedPayload = JSON.parse(payload);
+
+    return parsedPayload.exp > Date.now() / 1000;
+
+  }
 }

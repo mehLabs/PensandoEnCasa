@@ -8,6 +8,9 @@ import { Page404ErrorComponent } from './components/page404-error/page404-error.
 import { StoreComponent } from './components/store/store.component';
 import { CartComponent } from './components/cart/cart.component';
 import { ArticleDetailsComponent } from './components/article-details/article-details.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {path:"articles",component:ArticlesComponent},
@@ -15,6 +18,9 @@ const routes: Routes = [
   {path:"home",component:HomeComponent},
   {path:"store",component:StoreComponent},
   {path:"cart",component:CartComponent},
+  {path:"auth",component:AuthComponent},
+  {path:"admin",component:AdminComponent,
+    canActivate: [AuthGuard]},
   {path:'',redirectTo:"/home",pathMatch:'full'},
   {path:"**",component:Page404ErrorComponent},
 ];

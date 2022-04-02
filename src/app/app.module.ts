@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ArticleDetailsComponent } from './components/article-details/article-details.component';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './components/auth/auth.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AuthComponent } from './components/auth/auth.component';
     CartComponent,
     StoreComponent,
     ArticleDetailsComponent,
-    AuthComponent
+    AuthComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
