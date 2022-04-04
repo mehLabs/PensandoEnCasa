@@ -1,0 +1,19 @@
+i{
+    font-size: 1.25em;
+    margin: 0.1em;
+    color:black;
+    text-decoration: none;
+}
+.btn-simple{
+    padding: .30rem .75rem;
+    margin: 0;
+}
+
+.bg-red{
+    background-color: rgb(228, 40, 40);
+}
+
+.blue-link{
+    color: rgb(17, 161, 209);
+    text-decoration: none;
+}

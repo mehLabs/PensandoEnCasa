@@ -11,6 +11,10 @@ nav{
     border-color: rgba(0,0,0,.1);
 }
 
+.auth{
+    padding: 0;
+}
+
 .nav-right{
     display: flex;
     align-items: center;

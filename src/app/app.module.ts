@@ -16,6 +16,10 @@ import { RouterModule } from '@angular/router';
 import { AuthComponent } from './components/auth/auth.component';
 import { AdminComponent } from './components/admin/admin.component';
 
+import { AuthModule } from '@auth0/auth0-angular';
+import { Auth0ButtonComponent } from './components/auth0-button/auth0-button.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,12 +32,18 @@ import { AdminComponent } from './components/admin/admin.component';
     StoreComponent,
     ArticleDetailsComponent,
     AuthComponent,
-    AdminComponent
+    AdminComponent,
+    Auth0ButtonComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    AuthModule.forRoot({
+      domain: 'dev-3c83cuvr.us.auth0.com',
+      clientId: 'D4EeJ3XMiMyl7DrJIIR9ZR18UAsCcreu'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
