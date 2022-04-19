@@ -19,8 +19,8 @@ const routes: Routes = [
   {path:"store",component:StoreComponent},
   {path:"cart",component:CartComponent},
   {path:"auth",component:AuthComponent},
-  {path:"admin",component:AdminComponent,
-    canActivate: [AuthGuard]},
+  {path:"admin",component:AdminComponent},
+    //canActivate: [AuthGuard]},
   {path:'',redirectTo:"/home",pathMatch:'full'},
   {path:"**",component:Page404ErrorComponent},
 ];

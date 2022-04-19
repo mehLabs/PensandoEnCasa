@@ -13,7 +13,7 @@ export class ArticlesComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataStore.obtenerDatos().subscribe(data =>
-      this.products=data.products)
+      this.products=data)
   }
 
 }
