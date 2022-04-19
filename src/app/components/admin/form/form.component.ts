@@ -12,6 +12,8 @@ type Nullable<T> = T | null;
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit{
+  creado:any;
+
   name: string = '';
     usado: boolean = false;
     precio: number = 0;
@@ -42,8 +44,9 @@ export class FormComponent implements OnInit{
      const {name,usado,precio,id_product,id_categoria,descripcion,cantidad,img1,img2,img3} = this;
      const nuevoProducto = {name,usado,precio,id_product,id_categoria,descripcion,cantidad,img1,img2,img3};
 
-     console.log(nuevoProducto);
-     this.dataStore.nuevoProducto(nuevoProducto);
+     
+     this.dataStore.nuevoProducto(nuevoProducto).subscribe(data => this.creado = data);
+     console.log(this.creado);
 
 
 
