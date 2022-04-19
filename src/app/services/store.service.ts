@@ -47,7 +47,6 @@ export class StoreService {
 
   nuevoProducto(product: Producto):Observable<boolean>{
     let verdad:boolean = false;
-    console.log(product);
     return this.http.post<any>('https://infinite-refuge-54136.herokuapp.com/api/articulos/add', product);
   }
 }
