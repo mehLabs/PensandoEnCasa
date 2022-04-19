@@ -5,10 +5,10 @@ import {catchError, retry} from 'rxjs/operators';
 
 type Nullable<T> = T | null;
 interface Producto{
-  name: string;
+  nombre: string;
   usado: boolean;
   precio: number;
-  id_product: Nullable<number>;
+  id_article: Nullable<number>;
   id_categoria: Nullable<number>;
   descripcion: string;
   cantidad: number;

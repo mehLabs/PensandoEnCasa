@@ -1,14 +1,14 @@
 <div *ngFor="let product of products; index as productId"> <!-- Por cada producto del .json se arma una tarjeta con los atributos del producto-->
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
-          <a [routerLink]="['/articles/article',productId]" class="col-md-4">
+          <a [routerLink]="['/articles/article',product.id_article]" class="col-md-4">
             <img [src]="product.img" class="img-fluid rounded-start" alt="...">
           </a>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">{{product.name}}</h5>
-              <p class="card-text">{{product.description}}</p>
-              <p class="card-text"><small class="text-muted">${{product.prize}}</small></p>
+              <h5 class="card-title">{{productId}}- {{product.nombre}}</h5>
+              <p class="card-text">{{product.descripcion}}</p>
+              <p class="card-text"><small class="text-muted">${{product.precio}}</small></p>
             </div>
           </div>
         </div>
