@@ -19,6 +19,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { Auth0ButtonComponent } from './components/auth0-button/auth0-button.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { FormComponent } from './components/admin/form/form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -34,12 +36,15 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     AuthComponent,
     AdminComponent,
     Auth0ButtonComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     AuthModule.forRoot({
       domain: 'dev-3c83cuvr.us.auth0.com',
       clientId: 'D4EeJ3XMiMyl7DrJIIR9ZR18UAsCcreu'

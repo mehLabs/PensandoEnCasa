@@ -1,0 +1,50 @@
+<form (ngSubmit)="onEnviar()">
+    <div class="mb-3">
+        <label for="name" class="form-label">Nombre del artículo</label>
+        <input type="text" name="name" id="name" class="form-control" placeholder="Ingrese el nombre del artículo" [(ngModel)]="name">
+
+    </div>
+    <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Ingrese una descripción" [(ngModel)]="descripcion">
+    </div>
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Cantidad disponible del artículos</label>
+        <input type="number" name="cantidad" id="cantidad" class="form-control" placeholder="Ingrese la cantidad de artículos" [(ngModel)]="cantidad">
+    </div>
+    <!-- ME FALTA VALIDAD EL DINERO PARA QUE NO SE PASE DE FLOAT-->
+
+    <div class="mb-3">
+        <label for="price" class="form-label">Precio</label>
+        <input type="number" name="precio" id="precio" class="form-control" placeholder="Ingrese el precio del artículo" [(ngModel)]="precio">
+    </div>
+
+    <div class="mb-3 input-group-text">
+        <input type="checkbox"  name="usado" id="usado" class="form-check-input m-0" [(ngModel)]="usado" [ngModelOptions]="{standalone: true}" placeholder="¿Es usado el artículo?" >
+        <label for="usado" class="form-label m-0" >¿Usado?</label>
+        
+    </div>
+
+    <div class="mb-3">
+        <select 
+            class="form-select" 
+            aria-label="Elija una categoría" 
+            [(ngModel)]="id_categoria"
+            name="id_categoria"
+            id="id_categoria"
+            >
+
+            <option selected value=null>Elija una categoría</option>
+
+            <option  *ngFor="let category of categories;" value={{category.id}} >
+                {{category.name}}
+            </option>
+        </select>
+    </div>
+
+    <div class="flex submitbtn">
+        <button type="submit"  class="btn btn-primary">Submit</button>
+    </div>
+
+</form>

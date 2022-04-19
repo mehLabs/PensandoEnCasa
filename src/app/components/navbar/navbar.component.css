@@ -5,6 +5,12 @@ nav {
     box-shadow: 0 0 3px black;
 }
 
+
+
+.active{
+    background-color: var(--bs-blue);
+}
+
 .cart {
     padding: .25rem .75rem;
     border: 1px solid;
@@ -27,8 +33,14 @@ i {
     text-decoration: none;
 }
 
-#store-item {
-    padding:8px 0;
+.nav-link {
+    padding:8px 8px;
+    border-radius: 5px;
+}
+
+.navbar-light .navbar-nav .nav-link.active{
+    
+    color: white;
 }
 
 .right-bar {
