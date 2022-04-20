@@ -1,3 +1,7 @@
+<div class="d-flex justify-content-center align-items-center m-5">
+  <app-spinner [loaded]="loaded"></app-spinner>
+</div>
+
 <div *ngFor="let product of products; index as productId"> <!-- Por cada producto del .json se arma una tarjeta con los atributos del producto-->
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">

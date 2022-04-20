@@ -15,6 +15,7 @@ import { ArticleDetailsComponent } from './components/article-details/article-de
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './components/auth/auth.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 import { AuthModule } from '@auth0/auth0-angular';
 import { Auth0ButtonComponent } from './components/auth0-button/auth0-button.component';
@@ -37,7 +38,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AdminComponent,
     Auth0ButtonComponent,
     UserProfileComponent,
-    FormComponent
+    FormComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

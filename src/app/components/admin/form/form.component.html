@@ -1,4 +1,4 @@
-<form (ngSubmit)="onEnviar()">
+<form (ngSubmit)="onEnviar()" class="container p-4">
     <div class="mb-3">
         <label for="name" class="form-label">Nombre del artículo</label>
         <input type="text" name="name" id="name" class="form-control" placeholder="Ingrese el nombre del artículo" [(ngModel)]="nombre">
@@ -23,7 +23,11 @@
     <div class="mb-3 input-group-text">
         <input type="checkbox"  name="usado" id="usado" class="form-check-input m-0" [(ngModel)]="usado" [ngModelOptions]="{standalone: true}" placeholder="¿Es usado el artículo?" >
         <label for="usado" class="form-label m-0" >¿Usado?</label>
-        
+    </div>
+
+    <div class="mb-3">
+        <label for="formFile" class="form-label m-0"  >Subir imágenes (máximo 3)</label>
+        <input type="file" multiple accept=".webp, .png" id="formFile" name="img1" id="img1" class="form-control m-0" (change)="cargarImagen($event)" placeholder="Imagen 1" >
     </div>
 
     <div class="mb-3">
@@ -44,7 +48,7 @@
     </div>
 
     <div class="flex submitbtn">
-        <button type="submit"  class="btn btn-primary">Submit</button>
+        <button type="submit"  class="btn btn-primary">¡Enviar!</button>
     </div>
 
 </form>

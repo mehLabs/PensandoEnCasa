@@ -8,12 +8,15 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class ArticlesComponent implements OnInit {
   products:any;
-
+  loaded:boolean = false;
+  
   constructor(private dataStore: StoreService) { }
 
   ngOnInit(): void {
-    this.dataStore.obtenerDatos().subscribe(data =>
-      this.products=data)
+    this.dataStore.obtenerDatos().subscribe(data =>{
+      this.products=data;
+      this.loaded=true;
+    })
   }
 
 }
