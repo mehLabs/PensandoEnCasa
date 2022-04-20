@@ -17,7 +17,7 @@ export class FormComponent implements OnInit{
     nombre: string = '';
     usado: boolean = false;
     precio: number = 0;
-    id_product: Nullable<number> = null;
+    id_article: Nullable<number> = null;
     id_categoria: Nullable<number> = null;
     descripcion: string = '';
     cantidad: number = 0;
@@ -41,8 +41,8 @@ export class FormComponent implements OnInit{
     }];
 
    onEnviar(){
-     const {nombre,usado,precio,id_product,id_categoria,descripcion,cantidad,img1,img2,img3} = this;
-     const nuevoProducto = {nombre,usado,precio,id_product,id_categoria,descripcion,cantidad,img1,img2,img3};
+     const {nombre,usado,precio,id_article,id_categoria,descripcion,cantidad,img1,img2,img3} = this;
+     const nuevoProducto = {nombre,usado,precio,id_article,id_categoria,descripcion,cantidad,img1,img2,img3};
 
      
      this.dataStore.nuevoProducto(nuevoProducto).subscribe(data => this.creado = data);
