@@ -15,6 +15,7 @@ type Nullable<T> = T | null;
 })
 export class FormComponent implements OnInit{
   creado:any;
+  nameIsEmpty:boolean = true;
 
   //Articulo
   nombre: string = '';
@@ -62,24 +63,38 @@ export class FormComponent implements OnInit{
     largo = archivos.length;
     }
 
+
     for (var i=0;i<largo;i++){
       let reader = new FileReader();
       reader.readAsDataURL(archivos[i]);
-      reader.onloadend = () => {
-        console.log("Nombre en componente: "+this.nombre);
-        this.storageService.subirImagen(this.nombre+"-img"+ (i+1) , reader.result).then( urlImage => {
-          console.log(urlImage);
-          this.imgSupp[i] = urlImage;
-        })
-    }
+      console.log(i);
+      this.readFile(archivos[i],i);
+      
     
     }
   }
 
-  
+  private readFile(file: any, i:number): Observable<string> {
+    return new Observable(obs => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        console.log("?");
+        obs.next(reader.result as string);
+        this.storageService.subirImagen(this.nombre+"_img-"+ (i+1) , reader.result).then( urlImage => {
+          console.log(urlImage);
+          this.imgSupp[i] = urlImage;
+        })
+        obs.complete();
+      }
+    })
+  }
 
-    
 
+  isNameEmpty(event:any):void{
+    if (event.length > 0){ this.nameIsEmpty = false }
+    else { this.nameIsEmpty = true }
+  }
 
   ngOnInit(): void {
   }

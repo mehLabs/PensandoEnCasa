@@ -16,10 +16,11 @@ export class FirebaseStorageService {
   constructor() { }
 
   async subirImagen(nombre:string, imgBase64: any){
+
     try {
       console.log("Nombre en servicio: "+nombre);
-      let respuesta = await this.storageRef.child('assets/images/'+nombre).putString(imgBase64, 'data_url');
-      return await respuesta.ref.getDownloadURL();
+      let respuesta = this.storageRef.child('assets/images/'+nombre).putString(imgBase64, 'data_url');
+      return await (await respuesta).ref.getDownloadURL();
       //await espera a terminar la instrucción antes de seguir
       //el return devuelve la URL para mandarla a la base de datos y queda almacenada la ruta de la imagen
     }
