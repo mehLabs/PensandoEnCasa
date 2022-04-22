@@ -50,4 +50,11 @@ export class StoreService {
     let verdad:boolean = false;
     return this.http.post<any>('https://infinite-refuge-54136.herokuapp.com/api/articulos/add', product);
   }
+
+  obtenerArticulo(id:any):Observable<any>{
+    console.log('https://infinite-refuge-54136.herokuapp.com/api/articulos/'+id);
+    return this.http.get<any>(
+      'https://infinite-refuge-54136.herokuapp.com/api/articulos/'+id
+    )
+  }
 }

@@ -16,7 +16,10 @@ export class ArticlesComponent implements OnInit {
     this.dataStore.obtenerDatos().subscribe(data =>{
       this.products=data;
       this.loaded=true;
-    })
+      for (let product of this.products){
+        console.log(product.img1);
+      }
+    });
   }
 
 }

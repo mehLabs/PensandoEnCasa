@@ -28,7 +28,8 @@ export class FormComponent implements OnInit{
   img1: Nullable<string> = null;
   img2: Nullable<string> = null;
   img3: Nullable<string> = null;
-  imgSupp = [this.img1,this.img2,this.img3];
+
+  imgSupp:any = [];
 
   constructor(private dataStore: StoreService, private storageService: FirebaseStorageService) {}
 
@@ -48,11 +49,18 @@ export class FormComponent implements OnInit{
     
 
   onEnviar(){
+    //TODO agregar una tabla llamada imagenes que esté linkeada "onetomany" a articulos
+    this.img1 = this.imgSupp[0];
+    this.img2 = this.imgSupp[1];
+    this.img3 = this.imgSupp[2];
+
     const {nombre,usado,precio,id_article,id_categoria,descripcion,cantidad,img1,img2,img3} = this;
     const nuevoProducto = {nombre,usado,precio,id_article,id_categoria,descripcion,cantidad,img1,img2,img3};
     
-    this.dataStore.nuevoProducto(nuevoProducto).subscribe(data => this.creado = data);
-    console.log(this.creado);
+    this.dataStore.nuevoProducto(nuevoProducto).subscribe(data => {
+      this.creado = data
+      console.log(this.creado);
+    });
   }
 
   cargarImagen(event:any){
@@ -63,33 +71,25 @@ export class FormComponent implements OnInit{
     largo = archivos.length;
     }
 
-
     for (var i=0;i<largo;i++){
-      let reader = new FileReader();
-      reader.readAsDataURL(archivos[i]);
-      console.log(i);
-      this.readFile(archivos[i],i);
-      
+    this.uploadFile(archivos[i],i);
     
     }
   }
 
-  private readFile(file: any, i:number): Observable<string> {
-    return new Observable(obs => {
-      const reader = new FileReader();
+  uploadFile(file:any,i:number):any{
+    let reader = new FileReader();
       reader.readAsDataURL(file);
+      console.log(i);
       reader.onloadend = () => {
-        console.log("?");
-        obs.next(reader.result as string);
+        console.log(reader);
         this.storageService.subirImagen(this.nombre+"_img-"+ (i+1) , reader.result).then( urlImage => {
-          console.log(urlImage);
-          this.imgSupp[i] = urlImage;
+          this.imgSupp.push(this.nombre+"_img-"+ (i+1));
+          console.log("Uploaded");
+          return urlImage;
         })
-        obs.complete();
       }
-    })
   }
-
 
   isNameEmpty(event:any):void{
     if (event.length > 0){ this.nameIsEmpty = false }

@@ -11,6 +11,7 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class ArticleDetailsComponent implements OnInit {
   singleProduct:any;
+  id:any;
 
   constructor(private dataStore: StoreService, private route: ActivatedRoute) { 
     
@@ -18,9 +19,10 @@ export class ArticleDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataStore.obtenerDatos().subscribe(data => {
-      this.route.paramMap.subscribe(params => {
-        this.singleProduct = data.products[+params.get('productId') ];
-      });
+      this.id=this.route.snapshot.paramMap.get('productId');
+      this.singleProduct = this.dataStore.obtenerArticulo(this.id);
+      console.log(this.id);
+      console.log(this.singleProduct);
     });
   }
 
