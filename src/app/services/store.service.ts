@@ -54,7 +54,7 @@ export class StoreService {
   obtenerArticulo(id:any):Observable<any>{
     console.log('https://infinite-refuge-54136.herokuapp.com/api/articulos/'+id);
     return this.http.get<any>(
-      'https://infinite-refuge-54136.herokuapp.com/api/articulos/'+id
+      'https://infinite-refuge-54136.herokuapp.com/api/articulos/'+id+'/'
     )
   }
 }
