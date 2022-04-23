@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
 import { environment } from 'src/environments/environment';
+import { getStorage, ref } from "firebase/storage";
+import { ToWebpService } from './to-webp.service';
 
 
 firebase.initializeApp(environment.firebaseConfig); //INIZIALIZA FIREBASE PARA USARLO ACÁ
@@ -13,7 +15,7 @@ export class FirebaseStorageService {
   
   storageRef = firebase.app().storage().ref();
 
-  constructor() { }
+  constructor(private toWebp:ToWebpService) { }
 
   async subirImagen(nombre:string, imgBase64: any){
 
@@ -27,5 +29,11 @@ export class FirebaseStorageService {
       console.log(err);   
       return null;
     }
+  }
+
+  obtenerImgURL(nombre:string):any{
+    if (nombre !== null){
+      return 'https://firebasestorage.googleapis.com/v0/b/storification-5a9f7.appspot.com/o/assets%2Fimages%2F'+nombre+'?alt=media';
+    }else{ return null}
   }
 }

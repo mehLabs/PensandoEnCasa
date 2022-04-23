@@ -1,7 +1,35 @@
+<!-- MODAL -->
+<div class="modal" tabindex="-1" id="creadoModal" tabindex="-1" aria-labelledby="creadoModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">¡Artículo creado con éxito! 🥳</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="creadoModal" aria-label="Close" (click)="toggleModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p>Tu artículo fue creado con éxito. Puedes verlo, seguir agregando artículos o volver a la tienda.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="toggleModal()">Seguir agregando</button>
+          <a (click)="creadoCheck()" type="button" class="btn btn-primary">Ver artículo</a>
+          <button type="button" class="btn btn-primary" [routerLink]="['/store']">Ver tienda</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 <form (ngSubmit)="onEnviar()" class="container p-4">
     <div class="mb-3">
         <label for="name" class="form-label">Nombre del artículo</label>
-        <input (ngModelChange)="isNameEmpty($event)" type="text" name="name" id="name" class="form-control" placeholder="Ingrese el nombre del artículo" [(ngModel)]="nombre">
+        <input 
+        (ngModelChange)="isNameEmpty($event)" 
+        type="text" 
+        name="name" id="name" class="form-control" 
+        placeholder="Ingrese el nombre del artículo" 
+        [(ngModel)]="nombre" 
+        >
+        <span class="span-upload" *ngIf="errorCheck && nameIsEmpty"> Ingrese el nombre del artículo para subir imágenes </span>
 
     </div>
     <div class="mb-3">
@@ -10,14 +38,16 @@
     </div>
 
     <div class="mb-3">
-        <label for="name" class="form-label">Cantidad disponible del artículos</label>
+        <label for="cantidad" class="form-label">Cantidad disponible del artículos</label>
         <input type="number" name="cantidad" id="cantidad" class="form-control" placeholder="Ingrese la cantidad de artículos" [(ngModel)]="cantidad">
+        <span class="span-upload" *ngIf="cantIsEmpty && errorCheck">Ingrese el nombre del artículo para subir imágenes </span>
     </div>
     <!-- ME FALTA VALIDAD EL DINERO PARA QUE NO SE PASE DE FLOAT-->
 
     <div class="mb-3">
         <label for="price" class="form-label">Precio</label>
         <input type="number" name="precio" id="precio" class="form-control" placeholder="Ingrese el precio del artículo" [(ngModel)]="precio">
+        <span class="span-upload" *ngIf="errorCheck && precioIsEmpty"> Ingrese el nombre del artículo para subir imágenes </span>
     </div>
 
     <div class="mb-3 input-group-text">
@@ -29,6 +59,25 @@
         <label for="formFile" class="form-label m-0"  >Subir imágenes (máximo 3)</label>
         <input type="file" multiple accept=".webp, .png" id="formFile" name="img1" id="img1" class="form-control m-0" (change)="cargarImagen($event)" placeholder="Imagen 1" [attr.disabled] = "nameIsEmpty===true ? 'disabled':null ">
         <span class="span-upload" *ngIf="nameIsEmpty"> Ingrese el nombre del artículo para subir imágenes </span>
+        <span class="span-upload" *ngIf="errorCheck && fileIsEmpty"> Ingrese el nombre del artículo para subir imágenes </span>
+    </div>
+
+    <div>
+        <div class="progress mb-1">
+            <div [ngClass]="{'end': isImg[0] === 2}" title="image upload progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+            
+        </div>
+        <div class="progress mb-1">
+            <div [ngClass]="{'end': isImg[1] > 1}" title="image upload progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            
+        </div>
+        <div class="progress mb-1" >
+            <div [ngClass]="{'begin': isImg[2] === 1, 'end': isImg[2] === 2}" title="image upload progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+            
+        </div>
+        <img *ngIf="isImg[0]===2" [src]="imgSupp[0]" class="img-thumbnail" alt="...">
+        <img *ngIf="isImg[1]===2" [src]="imgSupp[1]" class="img-thumbnail" alt="...">
+        <img *ngIf="isImg[2]===2" [src]="imgSupp[2]" class="img-thumbnail" alt="...">
     </div>
 
     <div class="mb-3">
@@ -46,10 +95,17 @@
                 {{category.name}}
             </option>
         </select>
+        <span class="span-upload" *ngIf="errorCheck && catIsEmpty"> Por favor ingrese una categoría</span>
     </div>
 
     <div class="flex submitbtn">
-        <button *ngIf="nameIsEmpty === false" type="submit"  class="btn btn-primary">¡Enviar!</button>
+        <button 
+        *ngIf="nameIsEmpty === false" 
+        type="submit"  
+        class="btn btn-primary"
+        >
+            ¡Enviar!
+        </button>
     </div>
 
 </form>

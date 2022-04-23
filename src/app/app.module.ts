@@ -22,6 +22,7 @@ import { Auth0ButtonComponent } from './components/auth0-button/auth0-button.com
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { FormComponent } from './components/admin/form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CurrencyPipeModule } from './currency-pipe/currency-pipe.module';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    CurrencyPipeModule,
     AuthModule.forRoot({
       domain: 'dev-3c83cuvr.us.auth0.com',
       clientId: 'D4EeJ3XMiMyl7DrJIIR9ZR18UAsCcreu'

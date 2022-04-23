@@ -1,20 +1,30 @@
-<div class="d-flex justify-content-center align-items-center m-5">
+<div *ngIf="!loaded" class="d-flex justify-content-center align-items-center m-5">
   <app-spinner [loaded]="loaded"></app-spinner>
 </div>
 
 <div *ngFor="let product of products; index as productId"> <!-- Por cada producto del .json se arma una tarjeta con los atributos del producto-->
-  <a [routerLink]="['/articles/article',product.id_article]" class="col-md-4">
-    <div class="card mb-3" style="max-width: 540px;">
+  <div class="col-md-4 no-link">
+    <div class="card mb-3">
         <div class="row g-0">
-          <img [src]="product.img1" class="img-fluid rounded-start" alt="...">
+          <a [routerLink]="['/articles/article',product.id_article]" class="no-link">
+            <img [src]="fbStorage.obtenerImgURL(product.img1)" class="img-fluid rounded-start" alt="...">
+          </a>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">{{productId}}- {{product.nombre}}</h5>
-              <p class="card-text">{{product.descripcion}}</p>
-              <p class="card-text"><small class="text-muted">${{product.precio}}</small></p>
+              <div class="name-plus-x d-flex justify-content-between h-40">
+                <a   [routerLink]="['/articles/article',product.id_article]" class="no-link">
+                  <span class="card-title">{{productId+1}}- {{product.nombre}}</span> <!-- agrego un +1 para que no empiece a contar de 0 -->
+                </a>
+                <i class="bi bi-x-lg" (click)="eliminarProducto(product)"></i>
+              </div>
+              <a class="card-bottom" [routerLink]="['/articles/article',product.id_article]" class="no-link">
+                <p class="card-text">{{product.descripcion}}</p>
+                <p class="card-text"><small class="text-muted">{{product.precio | currencyArs }}</small></p>
+              </a>
+              <button class="btn btn-primary" [routerLink]="['/articles/article',product.id_article]" >Ver detalles</button>
             </div>
           </div>
         </div>
     </div>
-  </a>
+  </div>
 </div>

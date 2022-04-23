@@ -1,17 +1,31 @@
+<div class="container bg-secondary py-2" >
+  <a [routerLink]="['/store']" class="text-decoration-none">
+  <h2 class="text-white">
+    <i class="bi bi-arrow-left"></i>
+     Volver a la tienda
+  </h2>
+  </a>
+</div>
+
+<div *ngIf="!loaded" class="d-flex justify-content-center align-items-center m-5">
+  <app-spinner  [loaded]="loaded"></app-spinner>
+</div>
+
+
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" *ngIf="singleProduct.img2 !== null"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" *ngIf="singleProduct.img3 !== null"></button>
     </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img [src]="singleProduct.img1" class="d-block w-100 s-fit" alt="...">
       </div>
-      <div class="carousel-item">
+      <div class="carousel-item" *ngIf="singleProduct.img2 !== null">
         <img [src]="singleProduct.img2" class="d-block w-100 s-fit" alt="...">
       </div>
-      <div class="carousel-item">
+      <div class="carousel-item" *ngIf="singleProduct.img3 !== null">
         <img [src]="singleProduct.img3" class="d-block w-100 s-fit" alt="...">
       </div>
     </div>
@@ -24,4 +38,20 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
-<h1>{{singleProduct.nombre}}</h1>
+  <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg">
+    <div class="d-flex flex-column h-100 p-5 pt-0 pb-3 text-white text-shadow-1">
+      <h2 class="pt-2 mt-2 mb-4 display-6 lh-1 fw-bold">{{singleProduct.precio | currencyArs}} - {{singleProduct.nombre}}</h2>
+      <ul class="d-flex list-unstyled mt-auto">
+        <li class="d-flex align-items-center me-3">
+          <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
+          <small>Categoría: {{category}}</small>
+        </li>
+        <li class="d-flex align-items-center me-5">
+          <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
+          <small>Quedan {{singleProduct.cantidad}}</small>
+        </li>
+      </ul>
+      <button class="btn btn-primary mb-2">Me interesa</button>
+    </div>
+  </div>
+
