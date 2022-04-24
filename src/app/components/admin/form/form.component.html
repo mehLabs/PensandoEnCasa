@@ -64,20 +64,20 @@
 
     <div>
         <div class="progress mb-1">
-            <div [ngClass]="{'end': isImg[0] === 2}" title="image upload progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+            <div [ngClass]="{'begin': isImg[2] === 1, 'end': isImg[2] === 2}" title="image upload progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
             
         </div>
         <div class="progress mb-1">
-            <div [ngClass]="{'end': isImg[1] > 1}" title="image upload progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+            <div [ngClass]="{'begin': isImg[2] === 1, 'end': isImg[2] === 2}" title="image upload progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
             
         </div>
         <div class="progress mb-1" >
             <div [ngClass]="{'begin': isImg[2] === 1, 'end': isImg[2] === 2}" title="image upload progress" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
             
         </div>
-        <img *ngIf="isImg[0]===2" [src]="imgSupp[0]" class="img-thumbnail" alt="...">
-        <img *ngIf="isImg[1]===2" [src]="imgSupp[1]" class="img-thumbnail" alt="...">
-        <img *ngIf="isImg[2]===2" [src]="imgSupp[2]" class="img-thumbnail" alt="...">
+        <img *ngIf="isImg[0]===2" [src]="storageService.obtenerImgURL(imgSupp[0])" class="img-thumbnail" alt="...">
+        <img *ngIf="isImg[1]===2" [src]="storageService.obtenerImgURL(imgSupp[1])" class="img-thumbnail" alt="...">
+        <img *ngIf="isImg[2]===2" [src]="storageService.obtenerImgURL(imgSupp[2])" class="img-thumbnail" alt="...">
     </div>
 
     <div class="mb-3">

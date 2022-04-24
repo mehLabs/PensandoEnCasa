@@ -16,3 +16,7 @@
 .end{
     width: 100%;
 }
+
+.img-thumbnail{
+    max-width: 33.33%;
+}
