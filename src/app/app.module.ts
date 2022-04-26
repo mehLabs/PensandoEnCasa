@@ -23,6 +23,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { FormComponent } from './components/admin/form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyPipeModule } from './currency-pipe/currency-pipe.module';
+import { QueBuscasComponent } from './components/que-buscas/que-buscas.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CurrencyPipeModule } from './currency-pipe/currency-pipe.module';
     Auth0ButtonComponent,
     UserProfileComponent,
     FormComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    QueBuscasComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,33 @@
+.general-container{
+    margin: 5rem 0;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+
+.item{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.item-container{
+    gap: 2rem;
+    justify-content: center;
+    min-height: 125px;
+}
+
+.item svg{
+    transition: 0.3s;
+    padding: 1rem;
+    box-shadow: 0 0 5px rgb(50, 145, 189);
+}
+
+.item svg:hover{
+    transition: 0.3s;
+    width: 100px;
+    height: 100px;
+}
