@@ -27,7 +27,10 @@ import { QueBuscasComponent } from './components/que-buscas/que-buscas.component
 import { ShopComponent } from './home-components/shop/shop.component';
 import { SiteInConstructionComponent } from './components/site-in-construction/site-in-construction.component';
 import { CategoriesComponent } from './components/admin/categories/categories.component';
-import { AuthInterceptorService } from './services/auth-interceptor.service';
+
+import { AuthInterceptorService } from './services/auth-interceptor.service'; //No debería ir
+
+import { AuthHttpInterceptor } from '@auth0/auth0-angular';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,10 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     CurrencyPipeModule,
     AuthModule.forRoot({
       domain: 'dev-3c83cuvr.us.auth0.com',
-      clientId: 'D4EeJ3XMiMyl7DrJIIR9ZR18UAsCcreu'
+      clientId: 'D4EeJ3XMiMyl7DrJIIR9ZR18UAsCcreu',
+      httpInterceptor : {
+        allowedList: ["https://infinite-refuge-54136.herokuapp.com/*"] 
+      }
     })
   ],
   providers: [{
