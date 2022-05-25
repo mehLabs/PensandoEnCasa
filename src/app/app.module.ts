@@ -10,7 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { Page404ErrorComponent } from './components/page404-error/page404-error.component';
 import { CartComponent } from './components/cart/cart.component';
 import { StoreComponent } from './components/store/store.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ArticleDetailsComponent } from './components/article-details/article-details.component';
 import { RouterModule } from '@angular/router';
 import { AuthComponent } from './components/auth/auth.component';
@@ -24,6 +24,10 @@ import { FormComponent } from './components/admin/form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CurrencyPipeModule } from './currency-pipe/currency-pipe.module';
 import { QueBuscasComponent } from './components/que-buscas/que-buscas.component';
+import { ShopComponent } from './home-components/shop/shop.component';
+import { SiteInConstructionComponent } from './components/site-in-construction/site-in-construction.component';
+import { CategoriesComponent } from './components/admin/categories/categories.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,10 @@ import { QueBuscasComponent } from './components/que-buscas/que-buscas.component
     UserProfileComponent,
     FormComponent,
     SpinnerComponent,
-    QueBuscasComponent
+    QueBuscasComponent,
+    ShopComponent,
+    SiteInConstructionComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +63,11 @@ import { QueBuscasComponent } from './components/que-buscas/que-buscas.component
       clientId: 'D4EeJ3XMiMyl7DrJIIR9ZR18UAsCcreu'
     })
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

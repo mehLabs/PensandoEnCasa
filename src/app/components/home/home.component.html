@@ -1,15 +1,18 @@
+<app-shop></app-shop>
+
 <section id="home">
     <div id="carouselHome" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item div-mattress active">
-            <a routerLink="/store" id="go-shopping" class="btn btn-light btn-outline-dark go-shopping">Go shopping!</a>
-            <img src="../../../assets/images/mattres.webp" class="d-block w-100" alt="Mattress">
+          <div class="carousel-item div-mattress active product day-offer" [ngStyle]="{'background':'url(' + offers[0].img1 + ')','background-size' : 'cover'} ">
+            <div class="product-body w-100">
+              <span class="product-title">OFERTA DEL DÍA: {{offers[0].nombre}}</span>
+              <span class="product-price">{{offers[0].precio | currencyArs}}</span>
+            </div>
           </div>
-          <div class="carousel-item">
-            <img src="../../../assets/images/save_price.webp" class="d-block w-100" alt="Some discount prices">
-          </div>
-          <div class="carousel-item">
-            <img src="../../../assets/images/gift_card.webp" class="d-block w-100" alt="Gift card">
+          <div class="carousel-item div-mattress product" [ngStyle]="{'background':'url(' + fbStorage.obtenerImgURL(product.img1) + ')','background-size' : 'cover'} " *ngFor="let product of bestProducts">
+            <div class="product-body w-100">
+              <span class="product-price">{{product.precio | currencyArs}}</span>
+            </div>
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
@@ -21,6 +24,7 @@
             <span class="visually-hidden">Next</span>
           </button>
       </div>
+      
     
     
   <app-que-buscas></app-que-buscas>

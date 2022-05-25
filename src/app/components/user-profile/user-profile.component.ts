@@ -11,6 +11,10 @@ export class UserProfileComponent implements OnInit {
   constructor(public auth:AuthService) { }
 
   ngOnInit(): void {
+  this.auth.user$.subscribe(user => {
+    console.log(user);
+
+  });
   }
 
 }

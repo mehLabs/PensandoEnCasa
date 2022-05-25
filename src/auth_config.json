@@ -1,0 +1,6 @@
+{
+    "domain": "dev-3c83cuvr.us.auth0.com",
+    "clientId": "NqgdwEXKV6Dr03Dz9GUcCVcGLD0jDBOZ",
+    "audience": "https://infinite-refuge-54136.herokuapp.com/",
+    "serverUrl": "http://localhost:4200/"
+  }

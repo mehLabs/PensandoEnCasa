@@ -5,8 +5,20 @@ i{
     text-decoration: none;
 }
 .btn-simple{
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.377);
     padding: .30rem .75rem;
     margin: 0;
+    background-color: white;
+    border: 1px solid var(--main-red);
+}
+.btn-red{
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.377);
+    background-color: var(--main-red);
+    border: 1px solid black;
+}
+
+.dropdown-menu{
+    z-index: 99;
 }
 
 .bg-red{

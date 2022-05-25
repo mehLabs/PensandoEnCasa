@@ -16,6 +16,11 @@ interface Producto{
   img3: Nullable<string>;
   }
 
+interface Categoria{
+  nombre:string;
+  id_categoria: Nullable<number>;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -41,10 +46,17 @@ export class StoreService {
     );
   }
 
+  nuevaCategoria(nombre: Categoria){
+    return this.http.post<any>('https://infinite-refuge-54136.herokuapp.com/api/categoria/add',nombre)
+  }
   obtenerCategoria(id:any):Observable<any>{
     return this.http.get<any>(
       'https://infinite-refuge-54136.herokuapp.com/api/categoria/'+id
     )
+  }
+
+  obtenerCategorias():Observable<any>{
+    return this.http.get<any>('https://infinite-refuge-54136.herokuapp.com/api/categoria/');
   }
 
   eliminarProducto(producto:any):Observable<boolean>{

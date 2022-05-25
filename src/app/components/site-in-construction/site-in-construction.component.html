@@ -1,0 +1,24 @@
+<div class="modal fade" id="welcomeModal" tabindex="-1" aria-labelledby="welcomeModalLabel" aria-hidden="false">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="welcomeModalLabel">¡Hola, sea bienvenido/a!</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Este sitio está en construcción. Actualmente estoy trabajando la visualización en dispositivos móviles pequeños, por lo que su experiencia desde su dispositivo puede verse afectada
+              <br><br>
+              Pronto prepararemos el sitio para su visualización en dispositivos más grandes. Gracias por visitarnos.
+              <br><br>
+              Si tiene alguna pregunta, el desarrollador con gusto le responderá. 
+              <br>
+              <a href="mailto:hugoiturrietadeveloper@gmail.com">hugoiturrietadeveloper@gmail.com</a>
+          </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Gracias, seguir viendo portafolio</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button id="openModalButton" [hidden]="true" data-bs-toggle="modal" data-bs-target="#welcomeModal">Open Modal</button>
