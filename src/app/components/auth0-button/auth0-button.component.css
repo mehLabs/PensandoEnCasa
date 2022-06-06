@@ -1,31 +1,31 @@
 i{
-    font-size: 1.25em;
+    font-size: 1.5em;
     margin: 0.1em;
     color:black;
     text-decoration: none;
 }
-.btn-simple{
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.377);
-    padding: .30rem .75rem;
+.btn{
+    padding-left: 0;
+    padding-right: 0;
     margin: 0;
-    background-color: white;
-    border: 1px solid var(--main-red);
-}
-.btn-red{
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.377);
-    background-color: var(--main-red);
-    border: 1px solid black;
+    margin-right: 10px;
 }
 
 .dropdown-menu{
     z-index: 99;
 }
 
-.bg-red{
-    background-color: rgb(228, 40, 40);
-}
-
 .blue-link{
     color: rgb(17, 161, 209);
     text-decoration: none;
+}
+
+@media (max-width: 360px){
+    .bi-check-lg{
+        display: none;
+    }
+    .bi-person{
+        color: green;
+        font-size: 1.8rem;
+    }
 }

@@ -1,3 +1,7 @@
+<br>
+<h1 class="text-center">Crear artículo</h1>
+<hr>
+
 <!-- MODAL -->
 <div class="modal" tabindex="-1" id="creadoModal" tabindex="-1" aria-labelledby="creadoModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -57,7 +61,7 @@
 
     <div class="mb-3">
         <label for="formFile" class="form-label m-0"  >Subir imágenes (máximo 3)</label>
-        <input type="file" multiple accept=".webp, .png" id="formFile" name="img1" id="img1" class="form-control m-0" (change)="cargarImagen($event)" placeholder="Imagen 1" [attr.disabled] = "nameIsEmpty===true ? 'disabled':null ">
+        <input type="file" multiple accept="image/*" id="formFile" name="img1" id="img1" class="form-control m-0" (change)="cargarImagen($event)" placeholder="Imagen 1" [attr.disabled] = "nameIsEmpty===true ? 'disabled':null ">
         <span class="span-upload" *ngIf="nameIsEmpty"> Ingrese el nombre del artículo para subir imágenes </span>
         <span class="span-upload" *ngIf="errorCheck && fileIsEmpty"> Ingrese el nombre del artículo para subir imágenes </span>
     </div>
@@ -91,8 +95,8 @@
 
             <option selected value=null>Elija una categoría</option>
 
-            <option  *ngFor="let category of categories;" value={{category.id}} >
-                {{category.name}}
+            <option  *ngFor="let category of categories;" value={{category.id_categoria}} >
+                {{category.nombre}}
             </option>
         </select>
         <span class="span-upload" *ngIf="errorCheck && catIsEmpty"> Por favor ingrese una categoría</span>
@@ -107,5 +111,11 @@
             ¡Enviar!
         </button>
     </div>
+
+    <hr>
+
+    <h2>Categorías:</h2>
+
+    <app-categories (newCat)="newCat($event)"></app-categories>
 
 </form>

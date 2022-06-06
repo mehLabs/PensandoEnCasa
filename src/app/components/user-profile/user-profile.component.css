@@ -6,3 +6,8 @@ ul{
 .user-info{
     padding: 0 1rem;
 }
+
+a{
+    text-decoration: none;
+    color: black;
+}

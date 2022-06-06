@@ -1,6 +1,14 @@
 <div class="user-info">
     <ul *ngIf="auth.user$ | async as user">
-        <li><b>Nombre:</b> {{ user.name }}</li>
-        <li><b>Correo:</b> {{ user.email }}</li>
+        <li class="badge bg-light text-dark"><b>Nombre:</b> {{ user.name }}</li>
+        <li class="badge bg-light text-dark"><b>Correo:</b> {{ user.email }}</li>
+        <li><hr></li>
+        <li class="dropdown-item" *ngIf="rol === 'ADMIN'">
+            <a routerLink="/admin" class="">
+              ADMINISTRADOR
+            </a>
+        </li>
+        <li><a class="dropdown-item" href="#">Perfil</a></li>
+        <li><a class="dropdown-item" (click)="auth.logout({ returnTo: document.location.origin })">Cerrar sesión</a></li>
     </ul>
 </div>

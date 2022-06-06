@@ -44,16 +44,11 @@ export class FormComponent implements OnInit{
 
     
   //Categoria
-  categories: any = [{
-    name: "Colchones",
-    id: "1"
-    },{
-      name: "Jardin",
-      id: "2"
-    },{
-      name: "Baño",
-      id: "3"
-    }];
+  categories:any;
+
+  newCat(categoria:any){
+    this.categories.push(categoria);
+  }
 
     
 
@@ -99,6 +94,7 @@ export class FormComponent implements OnInit{
     let reader = new FileReader();
       this.isImg[i] = 1;
       reader.readAsDataURL(file);
+      console.log(typeof(file));
       console.log(this.isImg[i]);
       reader.onloadend = () => {
         console.log(reader);
@@ -167,6 +163,9 @@ export class FormComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.dataStore.obtenerCategorias().subscribe(cat => {
+      this.categories = cat;
+    })
   }
 
   changeImage(i:any,num:number){

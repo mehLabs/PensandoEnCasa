@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-center align-items-center m-5">
+  <div class="container">
+  
+    <div *ngFor="let product of products; index as productId"> <!-- Por cada producto del .json se arma una tarjeta con los atributos del producto-->
+      <div class="col-md-4 no-link">
+        <div class="card mb-3">
+            <div class="row g-0">
+              <a [routerLink]="['/articles/article',product.id_article]" class="no-link">
+                <img [src]="fbStorage.obtenerImgURL(product.img1)" class="img-fluid rounded-start" alt="...">
+              </a>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <div class="name-plus-x d-flex justify-content-between h-40">
+                    <a   [routerLink]="['/articles/article',product.id_article]" class="no-link">
+                      <span class="card-title">{{product.nombre}}</span> <!-- agrego un +1 para que no empiece a contar de 0 -->
+                    </a>
+                  </div>
+                  <a class="card-bottom" [routerLink]="['/articles/article',product.id_article]" class="no-link">
+                    <p class="card-text">{{product.descripcion}}</p>
+                    <p class="card-text"><small class="text-muted">{{product.precio | currencyArs }}</small></p>
+                  </a>
+                  <button class="btn btn-primary" [routerLink]="['/articles/article',product.id_article]" >Ver detalles</button>
+                  <button class="btn btn-primary" (click)="addToCart(product)" >Añadir al carrito</button>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

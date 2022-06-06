@@ -1,30 +1,65 @@
 <div *ngIf="!loaded" class="d-flex justify-content-center align-items-center m-5">
   <app-spinner [loaded]="loaded"></app-spinner>
 </div>
+<div class="container">
+  <div class="text-center">
+    <br>
+    <h1>{{categoryName}}</h1>
+    <p>{{categoryDes}}</p>
+    <hr>
+  </div>
 
-<div *ngFor="let product of products; index as productId"> <!-- Por cada producto del .json se arma una tarjeta con los atributos del producto-->
-  <div class="col-md-4 no-link">
-    <div class="card mb-3">
-        <div class="row g-0">
-          <a [routerLink]="['/articles/article',product.id_article]" class="no-link">
-            <img [src]="fbStorage.obtenerImgURL(product.img1)" class="img-fluid rounded-start" alt="...">
-          </a>
-          <div class="col-md-8">
-            <div class="card-body">
-              <div class="name-plus-x d-flex justify-content-between h-40">
-                <a   [routerLink]="['/articles/article',product.id_article]" class="no-link">
-                  <span class="card-title">{{productId+1}}- {{product.nombre}}</span> <!-- agrego un +1 para que no empiece a contar de 0 -->
+  <div *ngFor="let product of products; index as productId"> <!-- Por cada producto del .json se arma una tarjeta con los atributos del producto-->
+    <div class="col-md-4 no-link">
+      <div class="card mb-3">
+          <div class="row g-0">
+            <a [routerLink]="['/articles/article',product.id_article]" class="no-link">
+              <img [src]="fbStorage.obtenerImgURL(product.img1)" class="img-fluid rounded-start" alt="...">
+            </a>
+            <div class="col-md-8">
+              <div class="card-body">
+                <div class="name-plus-x d-flex justify-content-between h-40">
+                  <a   [routerLink]="['/articles/article',product.id_article]" class="no-link">
+                    <span class="card-title">{{product.nombre}}</span> <!-- agrego un +1 para que no empiece a contar de 0 -->
+                  </a>
+                  <i class="bi bi-x-lg" *ngIf="rol === 'ADMIN'" (click)="eliminarProducto(product)"></i>
+                </div>
+                <a class="card-bottom" [routerLink]="['/articles/article',product.id_article]" class="no-link">
+                  <p class="card-text">{{product.descripcion}}</p>
+                  <p class="card-text"><small class="text-muted">{{product.precio | currencyArs }}</small></p>
                 </a>
-                <i class="bi bi-x-lg" (click)="eliminarProducto(product)"></i>
+                <div class="d-flex justify-content-between">
+                  <button class="btn btn-primary" [routerLink]="['/articles/article',product.id_article]" >Ver detalles</button>
+                  <div class="btn-container">
+
+                    <button [id]="'btn'+productId" class="btn btn-primary btn-cart position-absolute" (click)="addToCart(product,productId)">
+                      <span [id]="'cant'+productId" class="hiddenQuantity">{{product.cantidad}}</span>
+                      <span [id]="'btnText'+productId">
+                        Añadir al carrito
+                      </span>
+                    </button>
+
+                    <div [id]="'plusMinus'+productId" class="add-or-minus d-flex justify-content-between align-items-center">
+                      <div class="btn py-0" (click)="minusToCart(product,productId)">
+                        <i class="bi" [ngClass]="{'bi-dash-lg':product.cantidad > 1, 'bi-trash3':product.cantidad === 1}"></i>
+                      </div>
+                      <div (click)="cancel(productId)">
+                        <i class="bi bi-x-lg"></i>
+                      </div>
+                      <div class="btn py-0" (click)="plusToCart(product)"><i class="bi bi-plus-lg"></i></div>
+                    </div>
+                    
+                    <div class="btn-remove position-absolute bg-danger d-flex justify-content-around ps-5">
+                      <span></span>
+                      <i class="bi bi-trash3-fill text-white" (click)="onClickRemove(product,productId)"></i>
+                    </div>
+
+                  </div>
+                </div>
               </div>
-              <a class="card-bottom" [routerLink]="['/articles/article',product.id_article]" class="no-link">
-                <p class="card-text">{{product.descripcion}}</p>
-                <p class="card-text"><small class="text-muted">{{product.precio | currencyArs }}</small></p>
-              </a>
-              <button class="btn btn-primary" [routerLink]="['/articles/article',product.id_article]" >Ver detalles</button>
             </div>
           </div>
-        </div>
+      </div>
     </div>
   </div>
 </div>

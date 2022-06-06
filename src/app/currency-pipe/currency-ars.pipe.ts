@@ -11,7 +11,6 @@ export class CurrencyArs {
         decimalDelimiter:string = ',',
         chunkLength: number = 3): string {
 
-        value -= 0.01;
 
         let result = '\\d(?=(\\d{' + chunkLength + '})+' + (decimalLength > 0 ? '\\D' : '$') + ')';
         let num = value.toFixed(Math.max(0, ~~decimalLength));

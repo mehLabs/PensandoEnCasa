@@ -1,13 +1,12 @@
 <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
     <div class="dropdown">
         <a class="btn btn-red" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-person"></i>
+            <i class="bi bi-person m-0"></i>
+            <i class="bi bi-check-lg m-0"></i>
         </a>
       
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
           <li><app-user-profile></app-user-profile></li>
-          <li><a class="dropdown-item" href="#">Perfil</a></li>
-          <li><a class="dropdown-item" (click)="auth.logout({ returnTo: document.location.origin })">Cerrar sesión</a></li>
         </ul>
       </div>
 

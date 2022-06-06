@@ -1,5 +1,3 @@
-import { domain, clientId, audience, serverUrl} from '../auth_config.json';
-
 export const environment = {
   production: true,
   firebaseConfig: {
@@ -13,9 +11,9 @@ export const environment = {
   },
   auth: {
     domain: "dev-3c83cuvr.us.auth0.com",
-    clientId: "NqgdwEXKV6Dr03Dz9GUcCVcGLD0jDBOZ",
+    clientId: "D4EeJ3XMiMyl7DrJIIR9ZR18UAsCcreu",
     redirectUri: window.location.origin,
-    audience: "dev-3c83cuvr.us.auth0.com"
+    audience: "https://infinite-refuge-54136.herokuapp.com/"
   },
   dev: {
     serverUrl:"https://infinite-refuge-54136.herokuapp.com"

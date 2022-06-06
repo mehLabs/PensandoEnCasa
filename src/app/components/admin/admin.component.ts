@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { StoreService } from 'src/app/services/store.service';
 
 
 @Component({
@@ -12,8 +13,19 @@ export class AdminComponent implements OnInit {
 
   @Input() jsonFormData:any;
 
-  constructor() {}
+  constructor(private backend:StoreService) {}
+
   ngOnInit(): void {
+  }
+
+  hardReset(){
+    console.log("Intentando borrar todo...");
+    let resultado = this.backend.hardReset();
+    if (resultado){
+      alert("Se han eliminado todos los artículos y categorías del servidor");
+    }else{
+      alert("Hubo un problema y no se pudo resetear el servidor");
+    }
   }
 
 }

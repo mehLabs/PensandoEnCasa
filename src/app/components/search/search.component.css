@@ -1,0 +1,26 @@
+.card.mb3{
+    max-width: 540px;
+}
+
+.no-link{
+    text-decoration: none;
+    color: black;
+}
+
+.card-title{
+    font-size: 1.25rem;
+    margin-top: 0;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.bi-x-lg{
+    font-size: 1.25rem;
+    color:red;
+}
+
+.bi:hover{
+    color:brown;
+    font-size: 1.50rem;
+}

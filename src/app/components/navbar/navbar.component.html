@@ -1,11 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light">
   <div class="container-fluid">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" routerLink="/home">
-      <img class="brand-img-text" alt="logo text" src="https://firebasestorage.googleapis.com/v0/b/storification-5a9f7.appspot.com/o/assets%2Ffixed_assets%2Flogo-titulo.webp?alt=media">
-      <img class="brand-img" alt="Logo" src="https://firebasestorage.googleapis.com/v0/b/storification-5a9f7.appspot.com/o/assets%2Ffixed_assets%2Flogo-simbolo.webp?alt=media">
+      Pensando en Casa
     </a>
     
 
@@ -22,10 +21,35 @@
       </div>
       
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav align-items-center">
           <li class="nav-item">
             <a routerLink="/store" class="dropdown-item" id="store-item">
               Ver productos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="" onclick="alert('Todavía no creado')" class="dropdown-item">
+              Promociones
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="" onclick="alert('Todavía no creado')" class="dropdown-item">
+              Preguntas frecuentes (FAQ)
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="" onclick="alert('Todavía no creado')" class="dropdown-item">
+              Nuestro equipo
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="" onclick="alert('Todavía no creado')"  class="dropdown-item">
+              Formas de envío
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="" onclick="alert('Todavía no creado')"  class="dropdown-item">
+              Información de contacto
             </a>
           </li>
           <!--
@@ -45,8 +69,9 @@
             </a>
           </li> -->
         </ul>
-        <form class="d-flex search">
-          <input class="form-control me-2" type="search" placeholder="¿Qué busca?" aria-label="¿Qué busca?">
+        <hr>
+        <form class="d-flex search mt-3" (ngSubmit)="onEnviar()">
+          <input class="form-control me-2" type="search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" placeholder="¿Qué busca?" aria-label="¿Qué busca?">
           <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>
       </div>

@@ -26,10 +26,11 @@ export class HomeComponent implements OnInit {
       if (data !== null){
         let sortedData = data.sort((n1:any,n2:any) => n1.precio - n2.precio);
         let count = 0;
-        for (let i=sortedData.length-1;i>sortedData.length-3;i--){
-  
-          this.bestProducts[count] = sortedData[i];
-          count++;
+        for (let i=0;i<sortedData.length-1;i++){
+          if (sortedData[i].img1 !== null){
+            this.bestProducts[count] = sortedData[i];
+            count++;
+          }
         }
         console.log(this.bestProducts);
         console.log(this.fbStorage.obtenerImgURL(this.bestProducts[0].img1));

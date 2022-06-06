@@ -1,4 +1,8 @@
-<div class="container-gap">
-    <app-form></app-form>
-    <app-categories></app-categories>
+<div class="container d-flex flex-column gap-5">
+    <br>
+    <a class="btn btn-primary" routerLink="/admin/products">Agregar producto</a>
+    <a class="btn btn-primary" routerLink="/admin/categories">Añadir o modificar categorías</a>
+    <a class="btn btn-danger" (click)="hardReset()">Resetear la página (borrar todo)</a>
+    <a class="btn btn-success" routerLink="/admin/ventas">Ordenes pendientes</a>
+    <hr>
 </div>

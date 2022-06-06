@@ -1,25 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-
-type Nullable<T> = T | null;
-interface Producto{
-  nombre: string;
-  usado: boolean;
-  precio: number;
-  id_article: Nullable<number>;
-  id_categoria: Nullable<number>;
-  descripcion: string;
-  cantidad: number;
-  img1: Nullable<string>;
-  img2: Nullable<string>;
-  img3: Nullable<string>;
-  }
-
-interface Categoria{
-  nombre:string;
-  id_categoria: Nullable<number>;
-}
+import {environment as env} from '../../environments/environment';
+import {Producto} from 'src/app/interfaces/producto';
+import { Categoria } from '../interfaces/categoria';
 
 @Injectable({
   providedIn: 'root'
@@ -33,35 +17,51 @@ export class StoreService {
 
   obtenerDatos():Observable<any>{
     return this.http.get<any>(
-    'https://infinite-refuge-54136.herokuapp.com/api/articulos');
+    `${env.dev.serverUrl}/api/public/articulos`);
+  }
+  
+  getArticulosPorCat(cat:number){
+    return this.http.get<any>(`${env.dev.serverUrl}/api/public/articulos/`+cat);
   }
 
   nuevoProducto(product: Producto):Observable<number>{
-    return this.http.post<any>('https://infinite-refuge-54136.herokuapp.com/api/articulos/add', product);
+    return this.http.post<any>(`${env.dev.serverUrl}/api/articulos/add`, product);
   }
 
   obtenerArticulo(id:any):Observable<any>{
     return this.http.get<any>(
-      'https://infinite-refuge-54136.herokuapp.com/api/articulos/'+id+'/'
+      `${env.dev.serverUrl}/api/public/articulos/`+id+'/'
     );
   }
 
-  nuevaCategoria(nombre: Categoria){
-    return this.http.post<any>('https://infinite-refuge-54136.herokuapp.com/api/categoria/add',nombre)
+  nuevaCategoria(nombre: Categoria):Observable<any>{
+    return this.http.post<any>(`${env.dev.serverUrl}/api/categoria/add`,nombre)
   }
   obtenerCategoria(id:any):Observable<any>{
     return this.http.get<any>(
-      'https://infinite-refuge-54136.herokuapp.com/api/categoria/'+id
+      `${env.dev.serverUrl}/api/public/categoria/`+id
     )
   }
 
   obtenerCategorias():Observable<any>{
-    return this.http.get<any>('https://infinite-refuge-54136.herokuapp.com/api/categoria/');
+    return this.http.get<any>(`${env.dev.serverUrl}/api/public/categoria/`);
   }
 
   eliminarProducto(producto:any):Observable<boolean>{
     return this.http.delete<any>(
-      'https://infinite-refuge-54136.herokuapp.com/api/articulos/del/'+producto.id_article
+      `${env.dev.serverUrl}/api/articulos/del/`+producto.id_article
+    )
+  }
+
+  eliminarCategoria(categoria:any):Observable<boolean>{
+    return this.http.delete<any>(
+      `${env.dev.serverUrl}/api/categoria/del/`+categoria.id_categoria
+    )
+  }
+
+  hardReset():Observable<boolean>{
+    return this.http.delete<any>(
+      `${env.dev.serverUrl}/api/admin/reset`
     )
   }
 

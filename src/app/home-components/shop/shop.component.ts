@@ -8,12 +8,17 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class ShopComponent implements OnInit {
   categorias:any;
-  buy:boolean = false;
+  buy:boolean = true;
+  loaded:boolean = false;
+
   constructor(private storeService: StoreService) {
    }
 
   ngOnInit(): void {
-    this.storeService.obtenerCategorias().subscribe(categoriasS => this.categorias=categoriasS);
+    this.storeService.obtenerCategorias().subscribe(categoriasS => {
+      this.categorias=categoriasS;
+      this.loaded = true;
+    });
   }
 
   verMas(){

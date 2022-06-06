@@ -1,18 +1,16 @@
-<app-shop></app-shop>
-
 <section id="home">
     <div id="carouselHome" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item div-mattress active product day-offer" [ngStyle]="{'background':'url(' + offers[0].img1 + ')','background-size' : 'cover'} ">
             <div class="product-body w-100">
-              <span class="product-title">OFERTA DEL DÍA: {{offers[0].nombre}}</span>
-              <span class="product-price">{{offers[0].precio | currencyArs}}</span>
             </div>
           </div>
-          <div class="carousel-item div-mattress product" [ngStyle]="{'background':'url(' + fbStorage.obtenerImgURL(product.img1) + ')','background-size' : 'cover'} " *ngFor="let product of bestProducts">
-            <div class="product-body w-100">
+          <div class="carousel-item div-mattress product"  *ngFor="let product of bestProducts">
+            <a [routerLink]="['/articles/article/',product.id_article]" class="product-body w-100">
+              <img title="Product offer" [src]="fbStorage.obtenerImgURL(product.img1)">
               <span class="product-price">{{product.precio | currencyArs}}</span>
-            </div>
+              <hr>
+            </a>
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
@@ -24,8 +22,11 @@
             <span class="visually-hidden">Next</span>
           </button>
       </div>
+      <br>
+      <h2>¡No te pierdas estas tremendas ofertas!</h2>
       
     
     
-  <app-que-buscas></app-que-buscas>
+      <app-shop></app-shop>
+      <app-que-buscas></app-que-buscas>
 </section>

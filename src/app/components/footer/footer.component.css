@@ -1,9 +1,30 @@
 .social-media{
+    background-color: rgba(255, 255, 255, 0.925);
+    border-top: 1px solid rgb(112, 112, 112);
+    border-bottom: 1px solid rgb(112, 112, 112);;
     display: flex;
+    position: fixed;
+    width: 100vw;
+    top: auto;
+    bottom: 0;
     justify-content: space-around;
+    z-index: 99;
+    height: 3rem;
+}
+
+.accordion{
+    margin-bottom: 3rem;
+}
+
+.accordion-body{
+    padding: 16px 0 0 0;
+}
+.accordion-body p{
+margin-left: 20px;
 }
 
 i{
     font-size: 2em;
     color: rgb(73, 73, 73);
 }
+

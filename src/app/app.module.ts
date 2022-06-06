@@ -12,7 +12,6 @@ import { CartComponent } from './components/cart/cart.component';
 import { StoreComponent } from './components/store/store.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ArticleDetailsComponent } from './components/article-details/article-details.component';
-import { RouterModule } from '@angular/router';
 import { AuthComponent } from './components/auth/auth.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
@@ -28,9 +27,18 @@ import { ShopComponent } from './home-components/shop/shop.component';
 import { SiteInConstructionComponent } from './components/site-in-construction/site-in-construction.component';
 import { CategoriesComponent } from './components/admin/categories/categories.component';
 
-import { AuthInterceptorService } from './services/auth-interceptor.service'; //No debería ir
+
+import { environment as env, environment } from '../environments/environment';
 
 import { AuthHttpInterceptor } from '@auth0/auth0-angular';
+import { CreditsComponent } from './components/credits/credits.component';
+import { SearchComponent } from './components/search/search.component';
+import { ConfirmBuyComponent } from './components/confirm-buy/confirm-buy.component';
+
+import * as firebase from 'firebase/app';
+import 'firebase/functions';
+import { CheckoutButtonComponent } from './checkout/checkout-button/checkout-button.component';
+firebase.initializeApp(environment.firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -52,7 +60,11 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     QueBuscasComponent,
     ShopComponent,
     SiteInConstructionComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    CreditsComponent,
+    SearchComponent,
+    ConfirmBuyComponent,
+    CheckoutButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -62,16 +74,25 @@ import { AuthHttpInterceptor } from '@auth0/auth0-angular';
     ReactiveFormsModule,
     CurrencyPipeModule,
     AuthModule.forRoot({
-      domain: 'dev-3c83cuvr.us.auth0.com',
-      clientId: 'D4EeJ3XMiMyl7DrJIIR9ZR18UAsCcreu',
+      ... env.auth,
       httpInterceptor : {
-        allowedList: ["https://infinite-refuge-54136.herokuapp.com/*"] 
+        allowedList: [
+          `${env.dev.serverUrl}/api/articulos/add`,
+          `${env.dev.serverUrl}/api/categoria/add`,
+          `${env.dev.serverUrl}/api/articulos/del/*`,
+          `${env.dev.serverUrl}/api/articulos/mod/*`,
+          `${env.dev.serverUrl}/api/categoria/del/*`,
+          `${env.dev.serverUrl}/api/articulos/*/sell`,
+          `${env.dev.serverUrl}/api/articulos/*/add`,
+          `${env.dev.serverUrl}/api/admin/*`,
+          `${env.dev.serverUrl}/api/public/mp/*`
+        ] // `${env.dev.serverUrl}/api/` 
       }
     })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
-    useClass: AuthInterceptorService,
+    useClass: AuthHttpInterceptor,
     multi: true
   }],
   bootstrap: [AppComponent]

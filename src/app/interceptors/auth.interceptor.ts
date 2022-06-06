@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { filter, mergeMap, catchError } from 'rxjs/operators';
-import { AuthService } from '@auth0/auth0-angular';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     if (req.url.indexOf('/secure/') > -1) {
-      return this.auth.getAccessTokenSilently().pipe(
+      return this.auth.accessToken$.pipe(
         filter(token => typeof token === 'string'),
         mergeMap(token => {
           const tokenReq = req.clone({

@@ -1,32 +1,16 @@
-<div class="container-total">
-    <section id="shop">
-        <div class="shop-body" *ngIf="buy">
-            <div class="shop-right">
-                <div class="shop-window shop-window-expand">
-                    <h3 class="window-header text-white">
-                        Categorías:
-                        <i class="bi bi-x-lg" (click)="verMas()"></i>
-                    </h3>
-                    <a class="shop-sign" *ngFor="let categoria of categorias" [routerLink]="['/articles']" [queryParams]="{category:categoria.nombre}">
-                        <h5>{{categoria.nombre}}</h5>
-                    </a>
-                </div>
-                <div class="window-bottom"></div>
-            </div>
-        </div>
-        <div class="shop-body" *ngIf="!buy">
-            <div class="arrow">
-                <img src="https://firebasestorage.googleapis.com/v0/b/storification-5a9f7.appspot.com/o/assets%2Ffixed_assets%2Fflecha.webp?alt=media">
-            </div>
-            <div class="shop-right">
-                <div class="shop-window window-contracted">
-                    <a class="shop-sign" (click)="verMas()">
-                        <h3 class="text-white text-center">Toca para ver</h3>
-                    </a>
-                </div>
-                <div class="window-bottom"></div>
-            </div>
-        </div>
-        
-    </section>
+
+<div class="title">
+    <h5>
+        <small>
+            Comprar por categorías
+        </small>
+    </h5>
+</div>
+<div class="carousel">
+    <div *ngIf="!loaded" class="d-flex justify-content-center align-items-center spinner">
+        <app-spinner [loaded]="loaded"></app-spinner>
+    </div>
+    <a class="category-item" routerLink="/articles" [queryParams]="{ category: category.id_categoria}" *ngFor="let category of categorias" [ngStyle]="{'background': 'url(' + category.img + ')'}">
+        <h3>{{category.nombre}}</h3>
+    </a>
 </div>
