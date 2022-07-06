@@ -1,57 +1,65 @@
-<div class="container bg-secondary py-2" >
-  <a [routerLink]="['/store']" class="text-decoration-none">
-  <h2 class="text-white">
-    <i class="bi bi-arrow-left"></i>
-     Volver a la tienda
-  </h2>
-  </a>
-</div>
+
+<app-btn-inicio [link]="'/articles'"></app-btn-inicio>
 
 <div *ngIf="!loaded" class="d-flex justify-content-center align-items-center m-5">
   <app-spinner  [loaded]="loaded"></app-spinner>
 </div>
 
+<div *ngIf="singleProduct !== undefined">
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" *ngIf="singleProduct.img2 !== null && singleProduct.img2 !== undefined"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" *ngIf="singleProduct.img3 !== null && singleProduct.img3 !== undefined"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active" *ngIf="singleProduct.img1 !== undefined && singleProduct.img1 !== null">
+          <img [src]="singleProduct.img1" class="d-block w-100 s-fit" alt="...">
+        </div>
+        <div class="carousel-item" *ngIf="singleProduct.img2 !== undefined && singleProduct.img2 !== null">
+          <img [src]="singleProduct.img2" class="d-block w-100 s-fit" alt="...">
+        </div>
+        <div class="carousel-item" *ngIf="singleProduct.img3 !== undefined && singleProduct.img3 !== null">
+          <img [src]="singleProduct.img3" class="d-block w-100 s-fit" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg">
+      <div class="d-flex flex-column h-100 p-5 pt-0 pb-3 text-white text-shadow-1">
+        <h2 class="d-flex align-items-center pt-2 mt-2 mb-4 display-6 lh-1 fw-bold lh" *ngIf="singleProduct !== undefined">
+          <span>
+            {{singleProduct.nombre}} 
+          </span>
+          <span class="ms-auto">
+            <app-btn-social-media [color]="'white'" [producto]="singleProduct.nombre" [id]="id" [precio]="singleProduct.precio" ></app-btn-social-media>
+          </span>
+        </h2>
+        <ul class="d-flex list-unstyled mt-auto flex-wrap">
+          <li class="d-flex align-items-center me-auto w-100 display-4">
+            <span>{{singleProduct.precio | currencyArs}}</span> 
+          </li>
+          <li class="d-flex align-items-center me-3">
+            <i class="bi bi-tag-fill text-white"></i>
+            <small class="ps-1">Categoría: {{category}}</small>
+          </li>
+          <li class="d-flex align-items-center me-5">
+            <p>Descripción: {{singleProduct.descripcion}}</p>
+          </li>
+        </ul>
+        <div class="d-flex justify-content-center">
+          <app-cart-add-to-button [product]="singleProduct" [productId]="id"></app-cart-add-to-button>
+        </div>
 
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-indicators">
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2" *ngIf="singleProduct.img2 !== null"></button>
-      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3" *ngIf="singleProduct.img3 !== null"></button>
-    </div>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img [src]="singleProduct.img1" class="d-block w-100 s-fit" alt="...">
-      </div>
-      <div class="carousel-item" *ngIf="singleProduct.img2 !== null">
-        <img [src]="singleProduct.img2" class="d-block w-100 s-fit" alt="...">
-      </div>
-      <div class="carousel-item" *ngIf="singleProduct.img3 !== null">
-        <img [src]="singleProduct.img3" class="d-block w-100 s-fit" alt="...">
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-  <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg">
-    <div class="d-flex flex-column h-100 p-5 pt-0 pb-3 text-white text-shadow-1">
-      <h2 class="pt-2 mt-2 mb-4 display-6 lh-1 fw-bold">{{singleProduct.precio | currencyArs}} - {{singleProduct.nombre}}</h2>
-      <ul class="d-flex list-unstyled mt-auto">
-        <li class="d-flex align-items-center me-3">
-          <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
-          <small>Categoría: {{category}}</small>
-        </li>
-        <li class="d-flex align-items-center me-5">
-          <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
-          <small>Quedan {{singleProduct.cantidad}}</small>
-        </li>
-      </ul>
-      <button class="btn btn-primary mb-2">Me interesa</button>
-    </div>
+
   </div>
 

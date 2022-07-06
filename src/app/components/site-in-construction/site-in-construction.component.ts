@@ -6,12 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./site-in-construction.component.css']
 })
 export class SiteInConstructionComponent implements OnInit {
+  desktop:boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
     if (window.innerWidth > 992){
       document.getElementById("openModalButton")?.click();
+      this.desktop=true;
     }
   }
 

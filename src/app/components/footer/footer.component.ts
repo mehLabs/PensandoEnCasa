@@ -7,6 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  links = [
+    {
+      "title":"Preguntas Frecuentes",
+      "link":"/preguntas"
+    },
+    {
+      "title":"Políticas de privacidad",
+      "link":"/privacidad"
+    },
+    {
+      "title":"Contáctanos",
+      "link":"/contacto"
+    },
+    {
+      "title":"Nuestro Equipo",
+      "link":"/equipo"
+    },
+    {
+      "title":"Formas de Envío",
+      "link":"/envios"
+    }
+  ]
+
   constructor() { }
 
   ngOnInit(): void {

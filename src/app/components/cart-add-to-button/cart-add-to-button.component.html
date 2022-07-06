@@ -1,0 +1,24 @@
+
+<div class="btn-container" *ngIf="product !== undefined">
+    <button [id]="'btn'+productId" class="btn btn-mostaza btn-cart position-absolute" (click)="addToCart(product,productId)">
+        <span [id]="'cant'+productId" class="hiddenQuantity">{{product.cantidad}}</span>
+        <span [id]="'btnText'+productId">
+        Añadir al carrito
+        </span>
+    </button>
+
+  <div [id]="'plusMinus'+productId" class="add-or-minus d-flex justify-content-between align-items-center">
+    <div class="btn py-0" (click)="minusToCart(product,productId)">
+      <i class="bi" [ngClass]="{'bi-dash-lg':product.cantidad > 1, 'bi-trash3':product.cantidad === 1}"></i>
+    </div>
+    <div (click)="cancel(productId)">
+      <i class="bi bi-x-lg"></i>
+    </div>
+    <div class="btn py-0" (click)="plusToCart(product)"><i class="bi bi-plus-lg"></i></div>
+  </div>
+  
+  <div class="btn-remove position-absolute bg-danger d-flex align-items-center justify-content-around ps-5">
+    <span></span>
+    <i class="bi bi-trash3-fill text-black" (click)="onClickRemove(product,productId)"></i>
+  </div>
+</div>

@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage";
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { StoreService } from 'src/app/services/store.service';
 import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
 import $ from "jquery";
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 type Nullable<T> = T | null;
 
@@ -155,6 +152,36 @@ export class FormComponent implements OnInit{
 
   toggleModal(){
     ($('#creadoModal') as any).toggle();
+  }
+
+  addMore(){
+    this.toggleModal();
+    this.emptyAll();
+  }
+
+  emptyAll(){
+  this.creado = undefined;
+  this.errorCheck= false;
+  this.nameIsEmpty= true;
+  this.cantIsEmpty= true;
+  this.precioIsEmpty = true;
+  this.catIsEmpty = true;
+  this.fileIsEmpty= true;
+
+  //Articulo
+  this.nombre = '';
+  this.usado = false;
+  this.precio = 0;
+  this.id_article= null;
+  this.id_categoria = null;
+  this.descripcion= '';
+  this.cantidad= 0;
+  this.img1 = null;
+  this.img2 = null;
+  this.img3 = null;
+
+  this.isImg = [];
+  this.imgSupp= [];
   }
 
   

@@ -1,0 +1,44 @@
+<br>
+<app-callback></app-callback>
+<h1 class="text-center">Agregar una nueva oferta</h1>
+<form [formGroup]="promoForm" (ngSubmit)="onEnviar()" class="container p-4" id="form" >
+    <div class="mb-3">
+        <label for="alt" class="form-label">Ingresá una descripción para tu promo</label>
+        <input type="text" id="alt" formControlName="alt" title="Descripción para tu promo" class="form-control">
+
+
+    </div> 
+
+    <div class="mb-3">
+        <label for="image" class="form-label">Ingrese la imagen de la promo</label>
+        <input type="file" id="image" class="form-control" accept="image/*" (change)="prepImagen($event)">
+    </div>
+
+    <div class="mb-3">
+        <label for="type" class="form-label">¿Está promocionando un artículo particular o una categoría entera?</label>
+        <select class="form-select" id="type" [(ngModel)]="promo.type" [ngModelOptions]="{standalone: true}" aria-label="tipo de anuncio" >
+            <option value="articulo">Artículo</option>
+            <option value="categoria">Categoría</option>
+        </select>
+    </div>
+
+    <div class="mb-3" *ngIf="promo.type !== ''">
+        <label for="type_id" class="form-label">Qué {{promo.type}} está promocionando?</label>
+        <select class="form-select" id="type_id" formControlName="type_id" aria-label="id del articulo o categoria">
+            <option *ngFor="let element of getObjId(promo.type)">{{element.nombre}}</option>
+        </select>
+    </div>
+
+    
+
+    <div class="d-flex justify-content-center align-items-center">
+        <button 
+        type="submit"  
+        class="btn btn-primary"
+        >
+            ¡Enviar!
+            <div class="loading" *ngIf="loadingMain"></div>
+        </button>
+    </div>
+
+</form>

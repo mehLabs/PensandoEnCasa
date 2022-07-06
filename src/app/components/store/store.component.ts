@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@auth0/auth0-angular';
+import {environment as env} from '../../../environments/environment';
 
 
 @Component({
@@ -10,13 +11,14 @@ import { AuthService } from '@auth0/auth0-angular';
 export class StoreComponent implements OnInit {
   rol:any = null;
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService) {
+   }
 
   ngOnInit(): void {
     let userRole:any = null;
-    this.auth.getUser().subscribe(data => {
+    this.auth.user$.subscribe(data => {
       if (data !== null && data !== undefined ){
-        userRole = data["https://infinite-refuge-54136.herokuapp.com/roles"][0];
+        userRole = data[`${env.auth.audience}`+"roles"][0];
         
         this.rol = userRole;
       }

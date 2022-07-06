@@ -2,21 +2,28 @@
   <app-spinner [loaded]="loaded"></app-spinner>
 </div>
 <div class="container">
-  <div class="text-center">
-    <br>
+  <br>
+  <a routerLink="/home" class="display-6 fw-bold btn btn-mostaza w-100 text-center shadow-sm">Inicio</a>
+  <div class="text-center" *ngIf="categoryName !== null">
     <h1>{{categoryName}}</h1>
     <p>{{categoryDes}}</p>
     <hr>
   </div>
 
+  <div *ngIf="products === null || products === undefined || products.length < 1" class="d-flex justify-content-center flex-wrap">
+    <h2 class="text-center">¡Parece que no hay artículos en esta sección!</h2>
+    <br>
+    <a routerLink="/home" class="btn btn-mostaza">Inicio</a>
+  </div>
+
   <div *ngFor="let product of products; index as productId"> <!-- Por cada producto del .json se arma una tarjeta con los atributos del producto-->
-    <div class="col-md-4 no-link">
-      <div class="card mb-3">
+    <div class="no-link">
+      <div class="card mb-3 shadow-sm">
           <div class="row g-0">
-            <a [routerLink]="['/articles/article',product.id_article]" class="no-link">
-              <img [src]="fbStorage.obtenerImgURL(product.img1)" class="img-fluid rounded-start" alt="...">
+            <a [routerLink]="['/articles/article',product.id_article]" class="no-link d-flex justify-content-center">
+              <img [src]="fbStorage.obtenerImgURL(product.img1)" class="img-fluid rounded" alt="...">
             </a>
-            <div class="col-md-8">
+            <div class="col-md-12">
               <div class="card-body">
                 <div class="name-plus-x d-flex justify-content-between h-40">
                   <a   [routerLink]="['/articles/article',product.id_article]" class="no-link">
@@ -26,35 +33,16 @@
                 </div>
                 <a class="card-bottom" [routerLink]="['/articles/article',product.id_article]" class="no-link">
                   <p class="card-text">{{product.descripcion}}</p>
-                  <p class="card-text"><small class="text-muted">{{product.precio | currencyArs }}</small></p>
+                  <h3 class="card-text pb-1"><span class="text-whatsapp">{{product.precio | currencyArs }}</span></h3>
                 </a>
                 <div class="d-flex justify-content-between">
-                  <button class="btn btn-primary" [routerLink]="['/articles/article',product.id_article]" >Ver detalles</button>
-                  <div class="btn-container">
-
-                    <button [id]="'btn'+productId" class="btn btn-primary btn-cart position-absolute" (click)="addToCart(product,productId)">
-                      <span [id]="'cant'+productId" class="hiddenQuantity">{{product.cantidad}}</span>
-                      <span [id]="'btnText'+productId">
-                        Añadir al carrito
-                      </span>
-                    </button>
-
-                    <div [id]="'plusMinus'+productId" class="add-or-minus d-flex justify-content-between align-items-center">
-                      <div class="btn py-0" (click)="minusToCart(product,productId)">
-                        <i class="bi" [ngClass]="{'bi-dash-lg':product.cantidad > 1, 'bi-trash3':product.cantidad === 1}"></i>
-                      </div>
-                      <div (click)="cancel(productId)">
-                        <i class="bi bi-x-lg"></i>
-                      </div>
-                      <div class="btn py-0" (click)="plusToCart(product)"><i class="bi bi-plus-lg"></i></div>
-                    </div>
-                    
-                    <div class="btn-remove position-absolute bg-danger d-flex justify-content-around ps-5">
-                      <span></span>
-                      <i class="bi bi-trash3-fill text-white" (click)="onClickRemove(product,productId)"></i>
-                    </div>
-
+                  <div class="left">
+                    <button class="btn btn-mostaza" [routerLink]="['/articles/article',product.id_article]">Ver detalles</button>
+                    <app-btn-social-media [id]="product.id_article" [precio]="product.precio" [title]="product.nombre"></app-btn-social-media>
                   </div>
+
+                  <app-cart-add-to-button [product]="product" [productId]="productId"></app-cart-add-to-button>
+
                 </div>
               </div>
             </div>

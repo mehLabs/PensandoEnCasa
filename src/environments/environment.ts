@@ -16,11 +16,12 @@ export const environment = {
   auth: {
     domain: "dev-3c83cuvr.us.auth0.com",
     clientId: "D4EeJ3XMiMyl7DrJIIR9ZR18UAsCcreu",
-    redirectUri: window.location.origin,
+    redirectUri: window.location.origin+"/callback",
     audience: "https://infinite-refuge-54136.herokuapp.com/"
   },
   dev: {
-    serverUrl:"https://infinite-refuge-54136.herokuapp.com"
+    serverUrl:"https://pec-v75zvqnarq-rj.a.run.app",
+    localUrl:"http://localhost:7000"
   }
 };
 

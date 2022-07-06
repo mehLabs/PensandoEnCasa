@@ -1,26 +1,40 @@
 <section id="home">
-    <div id="carouselHome" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item div-mattress active product day-offer" [ngStyle]="{'background':'url(' + offers[0].img1 + ')','background-size' : 'cover'} ">
-            <div class="product-body w-100">
-            </div>
+    <div id="carouselHome" class="carousel carousel-dark slide " data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button title="carousel-item" type="button" data-bs-target="#carouselHome" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <div *ngIf="offers.length > 1">
+          <button title="carousel-item" type="button" data-bs-target="#carouselHome" *ngFor="let offer of offers | slice:1;index as index" [attr.data-bs-slide-to]="index+1" class="active" aria-current="true" [attr.aria-label]="'Slide '+(index+2)"></button>
+        </div>
+        <button title="carousel-item" type="button" data-bs-target="#carouselHome" *ngFor="let product of bestProducts;index as index" [attr.data-bs-slide-to]="offers.length+index" class="active" aria-current="true" [attr.aria-label]="'Slide '+(offers.length+index+2)"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item div-mattress active product day-offer">
+          <div class="product-body w-100">
+            <img title="imagen principal" id="mainImage" [src]="offers[0].img" [alt]="offers[0].alt">
+            <i class="bi bi-x-lg delete" *ngIf="rol === 'ADMIN'" (click)="eliminarArticulo(offers[0])"></i>
           </div>
-          <div class="carousel-item div-mattress product"  *ngFor="let product of bestProducts">
-            <a [routerLink]="['/articles/article/',product.id_article]" class="product-body w-100">
+        </div>
+        <div class="carousel-item div-mattress product day-offer" *ngFor="let offer of offers | slice:1, let i = index">
+          <div class="product-body w-100">
+            <img [src]="offer.img" alt='' [alt]="offer.alt" >
+          </div>
+        </div>
+        <div *ngIf="offers.length<3 && bestProducts.length > 0">
+          <div class="carousel-item div-mattress product" *ngFor="let product of bestProducts">
+            <a [routerLink]="['/articles/article/',product.id_article]" class="product-body w-100 d-flex justify-content-center flex-wrap">
               <img title="Product offer" [src]="fbStorage.obtenerImgURL(product.img1)">
-              <span class="product-price">{{product.precio | currencyArs}}</span>
-              <hr>
             </a>
           </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
       <br>
       <h2>¡No te pierdas estas tremendas ofertas!</h2>
@@ -28,5 +42,7 @@
     
     
       <app-shop></app-shop>
-      <app-que-buscas></app-que-buscas>
+      <div class="container">
+        <a routerLink="/store" class="btn btn-mostaza shadow mt-2">Ver todos los artículos</a>
+      </div>
 </section>

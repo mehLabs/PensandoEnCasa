@@ -1,15 +1,18 @@
-.social-media{
-    background-color: rgba(255, 255, 255, 0.925);
-    border-top: 1px solid rgb(112, 112, 112);
-    border-bottom: 1px solid rgb(112, 112, 112);;
-    display: flex;
+.whatsapp{
     position: fixed;
-    width: 100vw;
-    top: auto;
-    bottom: 0;
-    justify-content: space-around;
     z-index: 99;
-    height: 3rem;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    border-width: 2px;
+    border-style: solid;
+    border-color:#FFDB58;
+    background-color: #25D366;
+    bottom: 1rem;
+    right: 1rem;
+}
+.small{
+    font-size: 1.5rem;
 }
 
 .accordion{
@@ -27,4 +30,14 @@ i{
     font-size: 2em;
     color: rgb(73, 73, 73);
 }
+#btns-list{
+    grid-template-columns: 1fr;
+    gap:0.5rem;
+}
 
+@media (min-width: 700px) {
+    #btns-list{
+        grid-template-columns: 1fr 1fr;
+        gap:1rem;
+    }
+}

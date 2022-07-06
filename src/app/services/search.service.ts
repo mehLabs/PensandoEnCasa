@@ -12,16 +12,19 @@ export class SearchService {
   constructor(private route:Router, private store:StoreService) { }
 
   search(text:string){
-    console.log(text);
+    this.searched.splice(0,this.searched.length);
     this.store.obtenerDatos().subscribe((articles:Producto[]) => {
       for (let article of articles){
-        let lowCase:string = article.nombre.toLocaleLowerCase();
-        if (lowCase.includes(text.toLocaleLowerCase())){
+        let lowCase:string = this.normalizar(article.nombre);
+        if (lowCase.includes( this.normalizar(text) )){
           this.searched.push(article);
         }
       }
-      console.log(this.searched);
-      this.route.navigate(["/search"]);
+      this.route.navigate(["/search"], {
+        queryParams: {
+          buscando: text
+        }
+      });
     })
   }
 
@@ -31,4 +34,10 @@ export class SearchService {
     }
     return this.searched;
   }
+
+  normalizar(texto:string){
+    let str = texto.toLocaleLowerCase();
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  } 
 }
+

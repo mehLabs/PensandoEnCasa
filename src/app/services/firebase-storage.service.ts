@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import {AngularFireAuth} from '@angular/fire/compat/auth';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/storage';
+import 'firebase/compat/auth';
 import { environment } from 'src/environments/environment';
 type Nullable<T> = T | null;
 
@@ -57,5 +59,9 @@ export class FirebaseStorageService {
           return result = urlImage;
         });
       }
+  }
+
+  signInToFirebase(JWT:string): Promise<any>{
+    return firebase.auth().signInWithCustomToken(JWT);
   }
 }

@@ -1,0 +1,97 @@
+<app-btn-inicio [link]="'/'"></app-btn-inicio>
+<div class="container my-4">
+    <div class="card shadow">
+        <div class=" card-body">
+            <h1 class=card-title>¿Te arrepentiste? 😭</h1>
+            <hr>
+            <p class="card-text">Por favor, llená este formulario para que te ayudemos lo antes posible</p>
+        </div>
+    </div>
+
+    <br>
+
+    <form (ngSubmit)="enviar()" id="form" [formGroup]="infoForm">
+        <input type="hidden" id="deviceId">
+        <div class="form-floating mb-3">
+            <input formControlName="name" required id="nombre" name="nombre" class="form-control" type="text" placeholder="Tu Nombre">
+            <label for="nombre">Nombre de pila</label>
+            <div *ngIf="infoForm.get('name')?.invalid && (infoForm.get('name')?.dirty || infoForm.get('name')?.touched)"
+                class="alert alert-danger">
+                Requerido
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input formControlName="dni" required id="dni" name="dni" class="form-control" type="number" placeholder="Tu dni">
+            <label for="nombre">DNI</label>
+            <div *ngIf="infoForm.get('dni')?.invalid && (infoForm.get('dni')?.dirty || infoForm.get('dni')?.touched)"
+                class="alert alert-danger">
+                Requerido
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input formControlName="email" required id="email" name="email" class="form-control" type="email" placeholder="email@example.com">
+            <label for="email">Correo electrónico</label>
+            <div *ngIf="infoForm.get('email')?.invalid && (infoForm.get('email')?.dirty || infoForm.get('email')?.touched)"
+                class="alert alert-danger">
+                Requerido
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-3 form-floating">
+                <input required formControlName="areaCode" name="area_code" id="cod" class="form-control" type="number" placeholder="291">
+                <label for="cod">Cod.área</label>
+                <div *ngIf="infoForm.get('areaCode')?.invalid && (infoForm.get('areaCode')?.dirty || infoForm.get('areaCode')?.touched)"
+                    class="alert alert-danger">
+                    Requerido
+                </div>
+            </div>
+            <div class="col-auto form-floating mb-3">
+                <input required id="tel" formControlName="number" name="phone_number" class="form-control" type="number" placeholder="1234567">
+                <label for="tel">Teléfono</label>
+                <div *ngIf="infoForm.get('number')?.invalid && (infoForm.get('number')?.dirty || infoForm.get('number')?.touched)"
+                    class="alert alert-danger">
+                    Requerido
+                </div>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input id="notas" required class="form-control" formControlName="notes" name="notes" type="text" placeholder="Tu Nombre">
+            <label for="notas">¿Qué artículos pediste?</label>
+        </div>
+        <hr>
+        <h3>Dirección</h3>
+        <div class="form-floating mb-3">
+            <input required id="calle" formControlName="streetName" name="street_name" class="form-control" type="text" placeholder="Calle">
+            <label for="calle">Nombre de la calle</label>
+            <div *ngIf="infoForm.get('streetName')?.invalid && (infoForm.get('streetName')?.dirty || infoForm.get('streetName')?.touched)"
+                class="alert alert-danger">
+                Requerido
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input required id="numCalle" formControlName="streetNumber" name="street_number" class="form-control" type="number" placeholder="Tu Nombre">
+            <label for="numCalle">Número de calle</label>
+            <div *ngIf="infoForm.get('streetNumber')?.invalid && (infoForm.get('streetNumber')?.dirty || infoForm.get('streetNumber')?.touched)"
+                class="alert alert-danger">
+                Requerido
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-4 form-floating mb-3">
+                <input id="piso" formControlName="floor" name="address_floor" class="form-control" type="number" placeholder="Piso">
+                <label for="piso">Piso</label>
+            </div>
+            <div class="col-auto form-floating mb-3">
+                <input id="dto" class="form-control" formControlName="dto" name="address_dto" type="text" placeholder="Departamento">
+                <label for="dto">Departamento</label>
+            </div>
+        </div>
+        <div class="form-floating mb-3">
+            <input id="codPostal" formControlName="zipCode" name="zip_code" class="form-control" type="number" placeholder="Tu Nombre">
+            <label for="codPostal">Código postal</label>
+        </div>
+
+        <button type="submit" onclick="alert('Todavía no está lista esta opción')" class="btn btn-danger w-100">¡ME ARREPIENTO!</button>
+        
+    </form>
+</div>

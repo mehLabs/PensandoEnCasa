@@ -1,0 +1,123 @@
+<div class="container my-2">
+    <div *ngIf="!cargado" class="d-flex justify-content-center">
+        <div class="spinner-border text-primary"></div>
+
+    </div>
+    <h1 class="text-center">Lista de pedidos</h1>
+    <ul class="list-group shadow">
+        <li class="card m-1" *ngFor="let venta of ventas;index as index">
+            <div class="card-body pb-0">
+                <div class="d-flex justify-content-between">
+                    <h3 class="d-flex">{{index+1}}- {{venta.additionalInfo.payer.firstName}} {{venta.additionalInfo.payer.lastName}}</h3>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#venta_'+index">Ver detalles</button>
+                </div>
+                <div [id]="'venta_'+index" class="collapse">
+                    <p>
+                        Nombre: {{venta.additionalInfo.payer.firstName}} {{venta.additionalInfo.payer.lastName}} <br>
+                        <span *ngIf="venta.additionalInfo.payer.address !== undefined">
+                            Dirección: {{venta.additionalInfo.payer.address.streetName}} {{venta.additionalInfo.payer.address.streetNumber}} {{venta.additionalInfo.payer.address.floor}} {{venta.additionalInfo.payer.address.dto}} <br>
+                        </span>
+                        {{venta.payer.identification.type}}: {{venta.payer.identification.number}} <br>
+                        Teléfono: <a [href]="'tel:'+venta.additionalInfo.payer.phone.areaCode + venta.additionalInfo.payer.phone.number">{{venta.additionalInfo.payer.phone.areaCode}} {{venta.additionalInfo.payer.phone.number}}</a>
+                            <a title="whatsapp" class="ms-2 bg-success text-decoration-none py-1 px-2 rounded" [href]="'https://api.whatsapp.com/send?phone=54'+venta.additionalInfo.payer.phone.areaCode + venta.additionalInfo.payer.phone.number" target="_blank" rel="noopener">
+                                <i class="bi bi-whatsapp text-white"></i>
+                            </a> <br>
+                        Fecha de compra: {{venta.dateCreated}} <strong>(hace {{getDate(venta.dateCreated)}} días)</strong>
+                    </p>
+                    <hr>
+                    <h6>Artículos comprados</h6>
+                    <ul>
+                        <li *ngFor="let art of venta.additionalInfo.items">{{art.title}} x{{art.quantity}}, {{art.unitPrice | currencyArs}}</li>
+                    </ul>
+                    <br>
+                    <div>
+                        Subtotal: {{venta.transactionAmount | currencyArs}} <br>
+                        <div
+                        
+                         *ngIf="venta.transactionAmount !== venta.transactionDetails.totalPaidAmount">
+                            <hr>
+                            ATENCIÓN, el cliente PAGÓ en cuotas, así que su pago fue de: {{venta.transactionDetails.totalPaidAmount | currencyArs}}
+                            <hr>
+                        </div>
+                        <span *ngFor="let comision of venta.feeDetails">
+                            Comisión por: {{comision.feePayer | feePayer}} {{comision.amount | currencyArs}} <br>
+                        </span>
+                        <strong>Total recibido: {{venta.transactionDetails.netReceivedAmount | currencyArs}} </strong>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between px-3 pb-3 pt-1">
+                <button class="btn btn-success" (click)="entregar(venta.id);venta.entregando=true">
+                    Pedido entregado
+                    <div *ngIf="venta.entregando" class="spinner-border spinner-border-sm text-light" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </button>
+                <button class="btn btn-danger" (click)="cancelar(venta.id,index);venta.eliminando=true">
+                    Cancelar pedido
+                    <div *ngIf="venta.eliminando" class="spinner-border spinner-border-sm text-light" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </button>
+            </div>
+
+        </li>
+    </ul>
+</div>
+
+
+<div class="container my-2">
+    <div *ngIf="!cargado" class="d-flex justify-content-center">
+        <div class="spinner-border text-primary"></div>
+
+    </div>
+    <h1 class="text-center">Pedidos entregados</h1>
+    <ul class="list-group shadow">
+        <li class="card m-1" *ngFor="let venta of entregados;index as index">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <h3 class="d-flex">{{venta.additionalInfo.payer.firstName}} {{venta.additionalInfo.payer.lastName}}</h3>
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#entrega_'+index">Ver detalles</button>
+                </div>
+                <div [id]="'entrega_'+index" class="collapse">
+                    <p class="">
+                        Nombre: {{venta.additionalInfo.payer.firstName}} {{venta.additionalInfo.payer.lastName}} <br>
+                        <span *ngIf="venta.additionalInfo.payer.address !== undefined">
+                            Dirección: {{venta.additionalInfo.payer.address.streetName}} {{venta.additionalInfo.payer.address.streetNumber}} {{venta.additionalInfo.payer.address.floor}} {{venta.additionalInfo.payer.address.dto}} <br>
+                        </span>
+                        {{venta.payer.identification.type}}: {{venta.payer.identification.number}} <br>
+                        Teléfono: <a [href]="'tel:'+venta.additionalInfo.payer.phone.areaCode + venta.additionalInfo.payer.phone.number">{{venta.additionalInfo.payer.phone.areaCode}} {{venta.additionalInfo.payer.phone.number}}</a>
+                            <a title="whatsapp" class="ms-2 bg-success text-decoration-none py-1 px-2 rounded" [href]="'https://api.whatsapp.com/send?phone=54'+venta.additionalInfo.payer.phone.areaCode + venta.additionalInfo.payer.phone.number" target="_blank" rel="noopener">
+                                <i class="bi bi-whatsapp text-white"></i>
+                            </a> <br>
+                        Fecha de compra: {{venta.dateCreated}} <strong>(hace {{getDate(venta.dateCreated)}} días)</strong>
+                    </p>
+                    <hr>
+                    <h6>Artículos comprados</h6>
+                    <ul>
+                        <li *ngFor="let art of venta.additionalInfo.items">{{art.title}} x{{art.quantity}}, {{art.unitPrice | currencyArs}}</li>
+                    </ul>
+                    <br>
+                    <p>
+                        Subtotal: {{venta.transactionAmount | currencyArs}} <br>
+                        <span *ngIf="venta.transactionAmount !== venta.transactionDetails.totalPaidAmount">ATENCIÓN, el cliente PAGÓ en cuotas, así que su pago fue de: {{venta.transactionDetails.totalPaidAmount | currencyArs}}</span>
+                        <span *ngFor="let comision of venta.feeDetails">
+                            Comisión por: {{comision.feePayer | feePayer}} {{comision.amount | currencyArs}} <br>
+                        </span>
+                        <strong>Total recibido: {{venta.transactionDetails.netReceivedAmount | currencyArs}} </strong>
+                    </p>
+                    <div>
+                        <button class="btn btn-danger d-block w-100" (click)="borrar(venta.id,index);venta.eliminando=true">
+                            Borrar
+                            <div *ngIf="venta.eliminando" class="spinner-border spinner-border-sm text-light" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </li>
+    </ul>
+</div>
+

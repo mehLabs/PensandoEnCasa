@@ -1,27 +1,61 @@
-<footer>
-    
-    <div class="accordion" id="About">
-        <div class="accordion-item">
-            <h2 class="accordion-header" id="headerAbout">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAbout" aria-expanded="false" aria-controls="collapseAbout">
-                    Acerca de la página
-                </button>
-            </h2>
-            <div id="collapseAbout" class="accordion-collapse collapse" aria-labelledby="headerAbout" data-bs-parent="#About">
-                <div class="accordion-body">
-                    <p>Emprendimiento dirigido por: Mariano González.</p>
-                    <app-credits></app-credits>
-                </div>
-            </div>
-        </div>
+<footer class="mt-5 bg-dark">
+
+    <div class="container-xl d-sm-flex justify-content-center mt-5 pt-5">
+        <ul class="list-unstyled d-flex justify-content-center mb-3 text-white-50 gap-5">
+            <li class="mr-3">
+                <a href="https://www.facebook.com/Pensando-En-Casa-101618329231035" title="link a facebook" target="_blank" rel="noopener">
+                <i class="bi bi-facebook" height="18" width="22" alt="Facebook icon"></i>
+                </a>
+            </li>
+            <li class="mr-3">
+                <a href="https://www.instagram.com/pensandoencasaa" title="link a instagram" target="_blank" rel="noopener">
+                <i class="bi bi-instagram" height="18" width="22" alt="Instagram icon"></i>
+                </a>
+            </li>
+            <li class="mr-3">
+                <a href="https://api.whatsapp.com/send?phone=542915271778" title="link a whatsapp" target="_blank" rel="noopener">
+                <i class="bi bi-whatsapp" height="18" width="22" alt="Whatsapp icon"></i>
+                </a>
+            </li>
+        </ul>
+        <hr>
     </div>
 
-    <div class="social-media">
-        <i class="bi bi-facebook"></i>
-        <a href="https://api.whatsapp.com/send?phone=542915271778">
-            <i class="bi bi-whatsapp"></i>
+    <div class="container d-flex flex-wrap text-white pb-5">
+        <h3 class="col-12 text-center">Pensando en Casa</h3>
+        <p class="col-12 text-center pt-2">¿Tenés dudas? <br>
+            Podemos ayudarte <a class="text-white" href="tel:2915271778"><strong>2915 27-1778</strong></a> 
+        </p>
+        <div class="mx-auto ">
+            <ul id="btns-list" class="list-unstyled d-grid">
+                <li *ngFor="let item of links"><div class="card text-bg-dark border-white mb-2">
+                    <a class="card-body text-decoration-none" [routerLink]="item.link">
+                        <span class="link-mostaza-dark">{{item.title}}</span>
+                    </a>
+                </div></li>
+                <li><div id="arrepentimiento" class="card text-bg-dark mb-2 border-white overflow-hidden">
+                    <small class="card-header">¿Querés cancelar tu compra?</small>
+                    <a class="card-body text-decoration-none text-bg-danger" routerLink="/arrepentimiento">
+                        Botón de arrepentimiento
+                    </a>
+                </div></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container text-white-50 d-flex align-items-center gap-2 pb-4">
+        <p class="m-0">Programador: Hugo Iturrieta</p>
+        <a href="https://github.com/mehLabs" title="link a github" target="_blank" rel="noopener">
+            <i class="bi bi-github small text-white" alt="Github icon"></i>
         </a>
-        <i class="bi bi-instagram"></i>
+        <a href="https://hugoitu.com.ar/" title="link a mi portafolio" target="_blank" rel="noopener">
+            <i class="bi bi-file-code-fill small text-white" alt="Portfolio icon"></i>
+        </a>
+    </div>
+
+    <div class="whatsapp d-flex justify-content-center align-items-center">
+        <a title="Mandar un whatsapp" target="_blank" rel="noopener" href="https://api.whatsapp.com/send?phone=542915271778">
+            <i class="bi bi-whatsapp text-white"></i>
+        </a>
     </div>
 
 </footer>

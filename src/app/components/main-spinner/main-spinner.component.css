@@ -1,0 +1,51 @@
+
+#mainSpinner{
+    z-index: 100;
+    display: flex;
+    height: 200vh;
+    width: 200vw;
+    border-radius: 50%;
+    left: -50%;
+    top: -50%;
+}
+.spinner-border{
+    height: 120px;
+    width: 120px;
+}
+#mainSpinner.out{
+    animation: out 1.5s normal forwards;
+}
+#mainSpinner.out .spinner-border{
+    animation: outSpinner 1.5s normal forwards;
+}
+
+@keyframes out {
+    0%{
+    }
+    99%{
+        top:-100%;
+        left:-100%;
+    }
+    100%{
+        width: 0;
+        height: 0;
+        top:0;
+        left: 0;
+    }
+}
+@keyframes outSpinner {
+    0%{
+        height: 120px;
+        width: 120px;
+        color: black;
+    }
+    50%{
+        height: 60px;
+        width: 60px;
+    }
+    100%{
+        color: rgba(0, 0, 0, 0);
+        height: 0;
+        width: 0;
+    }
+}

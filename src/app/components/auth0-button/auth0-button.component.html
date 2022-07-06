@@ -1,8 +1,7 @@
 <ng-container *ngIf="auth.isAuthenticated$ | async; else loggedOut">
     <div class="dropdown">
         <a class="btn btn-red" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="bi bi-person m-0"></i>
-            <i class="bi bi-check-lg m-0"></i>
+            <i class="bi bi-person-check-fill m-0"></i>
         </a>
       
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuLink">
@@ -14,6 +13,6 @@
 
   <ng-template #loggedOut>
     <button class="btn btn-simple" (click)="auth.loginWithRedirect()">
-        <i class="bi bi-person"></i>
+        <i class="bi bi-person-fill"></i>
     </button>
   </ng-template>

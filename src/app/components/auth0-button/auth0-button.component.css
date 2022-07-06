@@ -1,8 +1,10 @@
 i{
     font-size: 1.5em;
     margin: 0.1em;
-    color:black;
+    color:#FFDB58;
     text-decoration: none;
+    text-shadow: 0 0 2px black;
+    -webkit-text-stroke: 1px black;
 }
 .btn{
     padding-left: 0;
@@ -18,14 +20,4 @@ i{
 .blue-link{
     color: rgb(17, 161, 209);
     text-decoration: none;
-}
-
-@media (max-width: 360px){
-    .bi-check-lg{
-        display: none;
-    }
-    .bi-person{
-        color: green;
-        font-size: 1.8rem;
-    }
 }

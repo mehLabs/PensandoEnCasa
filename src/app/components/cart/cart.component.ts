@@ -39,6 +39,11 @@ export class CartComponent implements OnInit {
     this.setPrecioTotal();
     this.checkVacio();
   }
+  removeItemFromEmit(i:number){
+    this.products.splice(i,1);
+    this.setPrecioTotal();
+    this.checkVacio();
+  }
 
   setPrecioTotal(){
     this.total = 0;
@@ -72,5 +77,12 @@ export class CartComponent implements OnInit {
       this.products = [];
       this.hay = false;
     }
+  }
+
+  minusItem(precio:number){
+    this.total -= precio;
+  }
+  plusItem(precio:number){
+    this.total += precio;
   }
 }

@@ -1,7 +1,6 @@
 <br>
 <h1 class="text-center">Crear artículo</h1>
 <hr>
-
 <!-- MODAL -->
 <div class="modal" tabindex="-1" id="creadoModal" tabindex="-1" aria-labelledby="creadoModal" aria-hidden="true">
     <div class="modal-dialog">
@@ -14,7 +13,7 @@
           <p>Tu artículo fue creado con éxito. Puedes verlo, seguir agregando artículos o volver a la tienda.</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="toggleModal()">Seguir agregando</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="addMore()">Seguir agregando</button>
           <a (click)="creadoCheck()" type="button" class="btn btn-primary">Ver artículo</a>
           <button type="button" class="btn btn-primary" [routerLink]="['/store']">Ver tienda</button>
         </div>
@@ -33,7 +32,7 @@
         placeholder="Ingrese el nombre del artículo" 
         [(ngModel)]="nombre" 
         >
-        <span class="span-upload" *ngIf="errorCheck && nameIsEmpty"> Ingrese el nombre del artículo para subir imágenes </span>
+        <span class="span-upload text-danger" *ngIf="errorCheck && nameIsEmpty"> Ingrese el nombre del artículo para subir imágenes </span>
 
     </div>
     <div class="mb-3">

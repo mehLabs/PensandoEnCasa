@@ -1,0 +1,25 @@
+<app-btn-inicio [link]="'/'"></app-btn-inicio>
+<div class="container my-4">
+    <div class="row">
+        <div class="col-12">
+            
+            <div class="card shadow">
+                <div class="card-body d-flex flex-wrap">
+                    <h1 class="card-title">Preguntas Frecuentes</h1>
+                    <h4 class="card-text">Todo el mundo tiene preguntas, es normal tenerlas. Acá respondemos algunas de las más recurrentes</h4>
+                    <hr>
+                    <ul class="list-unstyled">
+                        <li *ngFor="let pyr of pyrs">
+                            <strong>Pregunta:</strong> {{pyr.pregunta}} <br>
+                            <strong>Respuesta:</strong> {{pyr.respuesta}}
+                            <hr>
+                        </li>
+                    </ul>
+                    <h4>¡Cualquier otra pregunta hágala a nuestro whatsapp! ☺</h4>
+                    <a class="mx-auto btn btn-whatsapp" href="https://api.whatsapp.com/send?phone=542915271778">Whatsapp</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

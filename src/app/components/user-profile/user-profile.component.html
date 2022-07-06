@@ -1,14 +1,18 @@
 <div class="user-info">
-    <ul *ngIf="auth.user$ | async as user">
-        <li class="badge bg-light text-dark"><b>Nombre:</b> {{ user.name }}</li>
-        <li class="badge bg-light text-dark"><b>Correo:</b> {{ user.email }}</li>
-        <li><hr></li>
-        <li class="dropdown-item" *ngIf="rol === 'ADMIN'">
-            <a routerLink="/admin" class="">
+    <ul *ngIf="auth.user$ | async as user" class="d-flex flex-wrap gap-1">
+        <li>
+            <span><b>Nombre:</b> {{ user.name }}</span>
+        </li>
+        <li>
+            <span class="d-flex gap-1"><b>Correo: </b>{{ user.email }}</span>
+            <hr>
+        </li>
+        <li *ngIf="rol === 'ADMIN'" class="w-100">
+            <a routerLink="/admin" class="btn btn-mostaza w-100">
               ADMINISTRADOR
             </a>
         </li>
-        <li><a class="dropdown-item" href="#">Perfil</a></li>
-        <li><a class="dropdown-item" (click)="auth.logout({ returnTo: document.location.origin })">Cerrar sesión</a></li>
+        <!-- <li><a class="dropdown-item" href="#">Perfil</a></li> -->
+        <li class="w-100"><a class="btn btn-danger w-100 border-mostaza-dark" (click)="auth.logout({ returnTo: document.location.origin })">Cerrar sesión</a></li>
     </ul>
 </div>

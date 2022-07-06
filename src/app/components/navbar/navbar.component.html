@@ -1,54 +1,54 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container-fluid">
+  <div class="container-fluid d-flex align-items-center">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <i class="bi bi-list"></i>
     </button>
-    <a class="navbar-brand" routerLink="/home">
-      Pensando en Casa
+    <a class="navbar-brand text-dark-mostaza" routerLink="/home">
+      <h2>Pensando en Casa</h2>
     </a>
     
 
-      <div class="right-bar">
-        <div class="auth">
-          <app-auth0-button></app-auth0-button>
-          
-        </div>
-        <div class="cart">
-          <a routerLink="/cart">
-            <i class="bi bi-cart"></i>
-          </a>  
-        </div>
+    <div class="right-bar" *ngIf="width< breakpoint">
+      <div class="auth">
+        <app-auth0-button></app-auth0-button>
+        
       </div>
+      <div class="cart">
+        <a routerLink="/cart">
+          <i class="bi bi-bag-fill"></i>
+        </a>  
+      </div>
+    </div>
       
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav align-items-center">
+        <ul class="navbar-nav align-items-start">
           <li class="nav-item">
             <a routerLink="/store" class="dropdown-item" id="store-item">
               Ver productos
             </a>
           </li>
           <li class="nav-item">
-            <a routerLink="" onclick="alert('Todavía no creado')" class="dropdown-item">
+            <a routerLink="/promos" class="dropdown-item">
               Promociones
             </a>
           </li>
           <li class="nav-item">
-            <a routerLink="" onclick="alert('Todavía no creado')" class="dropdown-item">
+            <a routerLink="/preguntas" class="dropdown-item">
               Preguntas frecuentes (FAQ)
             </a>
           </li>
-          <li class="nav-item">
-            <a routerLink="" onclick="alert('Todavía no creado')" class="dropdown-item">
+          <li class="nav-item" *ngIf="width < breakpoint">
+            <a routerLink="/equipo" class="dropdown-item">
               Nuestro equipo
             </a>
           </li>
-          <li class="nav-item">
-            <a routerLink="" onclick="alert('Todavía no creado')"  class="dropdown-item">
+          <li class="nav-item" *ngIf="width < breakpoint">
+            <a routerLink="/envios" class="dropdown-item">
               Formas de envío
             </a>
           </li>
-          <li class="nav-item">
-            <a routerLink="" onclick="alert('Todavía no creado')"  class="dropdown-item">
+          <li class="nav-item" *ngIf="width < breakpoint">
+            <a routerLink="/contacto"  class="dropdown-item">
               Información de contacto
             </a>
           </li>
@@ -70,11 +70,22 @@
           </li> -->
         </ul>
         <hr>
-        <form class="d-flex search mt-3" (ngSubmit)="onEnviar()">
+        <form class="d-flex search" (ngSubmit)="onEnviar()">
           <input class="form-control me-2" type="search" [(ngModel)]="searchText" [ngModelOptions]="{standalone: true}" placeholder="¿Qué busca?" aria-label="¿Qué busca?">
           <button class="btn btn-outline-success" type="submit">Buscar</button>
         </form>
       </div>
-      
+
+      <div class="right-bar" *ngIf="width >= breakpoint">
+        <div class="auth">
+          <app-auth0-button></app-auth0-button>
+          
+        </div>
+        <div class="cart">
+          <a routerLink="/cart">
+            <i class="bi bi-bag-fill"></i>
+          </a>  
+        </div>
+      </div>
     </div>
   </nav>

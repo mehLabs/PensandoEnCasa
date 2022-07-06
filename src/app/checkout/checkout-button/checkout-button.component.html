@@ -1,5 +1,19 @@
 
-    <button type="button" (click)="onBuy()" 
+<div class="d-flex justify-content-center flex-wrap">
+    <span class="text-danger" *ngIf="!profileForm.valid">Por favor. Llene todos los campos requeridos</span>
+        
+    <button *ngIf="!loading" type="submit" form="form"
     class="mercadopago-button" id="mercadopago-button">
-    Continuar compra
+        Pagar la compra
     </button>
+    <button 
+    *ngIf="loading" 
+    type="button" 
+    class="mercadopago-button" 
+    id="mercadopago-button-loading" 
+    title="Loading..." 
+    >
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Cargando...
+    </button>
+</div>

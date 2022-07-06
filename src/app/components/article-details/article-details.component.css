@@ -1,4 +1,3 @@
 .s-fit {
-    object-fit: cover;
-    max-height: 300px;
+    object-fit: scale-down;
 }

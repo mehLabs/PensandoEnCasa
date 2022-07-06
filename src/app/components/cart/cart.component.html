@@ -2,7 +2,7 @@
 <h1 class="text-center"> Tu carrito de compras ({{products.length}})</h1>
 <hr>
 <div *ngIf="hay" class="container d-flex flex-column gap-2">
-  <div class="card" *ngFor="let product of products; index as index">
+  <div class="card" *ngFor="let product of products; index as productId">
     <div class="row g-0">
       <div class="col-4">
         <img alt="description of" [title]="'imagen de' + product.nombre" [src]="firebase.obtenerImgURL(product.img1)" class="miniatura rounded-start ">
@@ -11,7 +11,7 @@
         <div>
           <div class="card-header d-flex justify-content-between">
             {{product.nombre}} x{{product.cantidad}}
-            <i class="bi bi-x-lg" (click)="removeItem(product,index)"></i> 
+            <i class="bi bi-x-lg" (click)="removeItem(product,productId)"></i> 
           </div>
           <div class="card-body descripcion">
             <p>
@@ -24,20 +24,10 @@
         </div>
         <div class="card-container d-flex flex-column justify-content-center precio">
 
-          <div [id]="'plusMinus'+index" class="ms-auto me-2 add-or-minus d-flex justify-content-between align-items-center text-white">
-            <div class="btn" (click)="minusToCart(product,index)">
-              <i class="bi bi-dash-lg text-white" [ngClass]="{'bi-dash-lg':product.cantidad > 1,'bi-trash3':product.cantidad === 1}"></i>
-            </div>
-            <span>
-              {{product.cantidad}}
-            </span>
-            <div class="btn" (click)="plusToCart(product)"><i class="bi bi-plus-lg text-white"></i></div>
-          </div>
-
-          
+          <!--Botón para agregar o sacar cantidad de un producto-->
+          <app-cart-add-to-button (minusItem)="minusItem($event)" (addItem)="plusItem($event)" (removeItem)="removeItemFromEmit($event)" [product]="product" [productId]="productId" [cant]="product.cantidad" class="me-2 ms-auto"></app-cart-add-to-button>
 
           <hr>
-
           <span class="me-auto ms-auto pb-2">
             
             <span class="container ps-0">

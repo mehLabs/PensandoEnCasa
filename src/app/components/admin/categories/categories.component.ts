@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
 import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
 import { StoreService } from 'src/app/services/store.service';
 
@@ -132,7 +131,7 @@ export class CategoriesComponent implements OnInit {
     return url; //it returns the url OK
   }
 
-  changeImage(image:any){
+  changeImage(image:any){ //actualiza la img que se va a subir a la database
     this.img = image;
   }
 

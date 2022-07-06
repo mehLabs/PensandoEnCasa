@@ -1,6 +1,10 @@
-<div class="d-flex justify-content-center align-items-center mb-1" *ngIf="rol === 'ADMIN'">
-    <a class="btn btn-outline-primary" routerLink="/admin">
-        <span>Agregar/Quitar artículos</span>
-    </a>
+<br>
+<div *ngIf="rol!== undefined && rol === 'ADMIN'">
+    <div class="d-flex justify-content-center align-items-center mb-1">
+        <a class="btn btn-outline-primary" routerLink="/admin">
+            <span>Agregar/Quitar artículos</span>
+        </a>
+    </div>
+    <hr>
 </div>
-<app-articles></app-articles>
+<app-articles [rol]="rol"></app-articles>

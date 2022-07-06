@@ -13,12 +13,15 @@
     width: 100vw;
 }
 .category-item{
-    background-size: cover !important;
-    background-position: center !important;
     height: 18rem;
     min-width: 9rem;
     max-width: 9rem;
-    display: flex;
+    overflow: hidden;
+}
+.category-item img{
+    height: 18rem;
+    width: 9rem;
+    object-fit: cover;
     border: 1px solid black;
 }
 .category-item h3{

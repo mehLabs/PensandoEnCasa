@@ -1,3 +1,6 @@
 .container{
     min-height: 90vh;
 }
+.menu{
+    grid-template-columns: 1fr 1fr;
+}

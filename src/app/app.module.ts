@@ -35,10 +35,27 @@ import { CreditsComponent } from './components/credits/credits.component';
 import { SearchComponent } from './components/search/search.component';
 import { ConfirmBuyComponent } from './components/confirm-buy/confirm-buy.component';
 
-import * as firebase from 'firebase/app';
-import 'firebase/functions';
+import {initializeApp} from 'firebase/app';
 import { CheckoutButtonComponent } from './checkout/checkout-button/checkout-button.component';
-firebase.initializeApp(environment.firebaseConfig);
+import { ComprobanteComponent } from './checkout/comprobante/comprobante.component';
+import { QRCodeModule } from 'angularx-qrcode';
+import { VentasComponent } from './components/admin/ventas/ventas.component';
+import { FeePayerPipe } from './pipes/fee-payer.pipe';
+import { CallbackComponent } from './components/auth/callback/callback.component';
+import { CartAddToButtonComponent } from './components/cart-add-to-button/cart-add-to-button.component';
+import { MainSpinnerComponent } from './components/main-spinner/main-spinner.component';
+import { BtnSocialMediaComponent } from './components/btn-social-media/btn-social-media.component';
+import { FAQComponent } from './components/pages/faq/faq.component';
+import { PrivacyPoliticsComponent } from './components/pages/privacy-politics/privacy-politics.component';
+import { ContactComponent } from './components/pages/contact/contact.component';
+import { ShipmentsComponent } from './components/pages/shipments/shipments.component';
+import { OurTeamComponent } from './components/pages/our-team/our-team.component';
+import { PromosComponent } from './components/pages/promos/promos.component';
+import { BtnInicioComponent } from './components/btn-inicio/btn-inicio.component';
+import { ArrepentimientoComponent } from './components/pages/arrepentimiento/arrepentimiento.component';
+import { AdminPromosComponent } from './components/admin/admin-promos/admin-promos.component';
+import { DevMercadopagoComponent } from './dev/dev-mercadopago/dev-mercadopago.component';
+const firebase = initializeApp(environment.firebaseConfig);
 
 @NgModule({
   declarations: [
@@ -65,6 +82,23 @@ firebase.initializeApp(environment.firebaseConfig);
     SearchComponent,
     ConfirmBuyComponent,
     CheckoutButtonComponent,
+    ComprobanteComponent,
+    VentasComponent,
+    FeePayerPipe,
+    CallbackComponent,
+    CartAddToButtonComponent,
+    MainSpinnerComponent,
+    BtnSocialMediaComponent,
+    FAQComponent,
+    PrivacyPoliticsComponent,
+    ContactComponent,
+    ShipmentsComponent,
+    OurTeamComponent,
+    PromosComponent,
+    BtnInicioComponent,
+    ArrepentimientoComponent,
+    AdminPromosComponent,
+    DevMercadopagoComponent
   ],
   imports: [
     BrowserModule,
@@ -72,6 +106,7 @@ firebase.initializeApp(environment.firebaseConfig);
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    QRCodeModule,
     CurrencyPipeModule,
     AuthModule.forRoot({
       ... env.auth,
@@ -85,8 +120,10 @@ firebase.initializeApp(environment.firebaseConfig);
           `${env.dev.serverUrl}/api/articulos/*/sell`,
           `${env.dev.serverUrl}/api/articulos/*/add`,
           `${env.dev.serverUrl}/api/admin/*`,
-          `${env.dev.serverUrl}/api/public/mp/*`
-        ] // `${env.dev.serverUrl}/api/` 
+          `${env.dev.serverUrl}/api/protected/*`,
+          `${env.dev.localUrl}/api/protected/*`
+        ], // `${env.dev.serverUrl}/api/` 
+        
       }
     })
   ],

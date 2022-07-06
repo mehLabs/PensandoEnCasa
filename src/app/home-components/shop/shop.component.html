@@ -6,11 +6,12 @@
         </small>
     </h5>
 </div>
-<div class="carousel">
+<div class="carousel shadow px-2 d-flex w-100 justify-content-center">
     <div *ngIf="!loaded" class="d-flex justify-content-center align-items-center spinner">
         <app-spinner [loaded]="loaded"></app-spinner>
     </div>
-    <a class="category-item" routerLink="/articles" [queryParams]="{ category: category.id_categoria}" *ngFor="let category of categorias" [ngStyle]="{'background': 'url(' + category.img + ')'}">
+    <a class="category-item d-flex flex-column" routerLink="/articles" [queryParams]="{ category: category.id_categoria}" *ngFor="let category of categorias">
+        <img [src]="category.img" alt="" [alt]="category.nombre">
         <h3>{{category.nombre}}</h3>
     </a>
 </div>

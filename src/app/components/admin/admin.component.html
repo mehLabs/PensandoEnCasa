@@ -1,8 +1,10 @@
-<div class="container d-flex flex-column gap-5">
-    <br>
-    <a class="btn btn-primary" routerLink="/admin/products">Agregar producto</a>
-    <a class="btn btn-primary" routerLink="/admin/categories">Añadir o modificar categorías</a>
-    <a class="btn btn-danger" (click)="hardReset()">Resetear la página (borrar todo)</a>
-    <a class="btn btn-success" routerLink="/admin/ventas">Ordenes pendientes</a>
+<div class="container mt-4">
+    <div class="d-grid menu gap-2">
+        <a class="btn btn-mostaza d-flex align-items-center" routerLink="/admin/products">Agregar producto</a>
+        <a class="btn btn-mostaza d-flex align-items-center" routerLink="/admin/categories">Añadir o modificar categorías</a>
+        <a class="btn btn-mostaza d-flex align-items-center" routerLink="/admin/promos">Añadir o modificar promociones</a>
+        <a class="btn btn-danger d-flex align-items-center" (click)="hardReset()">Resetear la página (borrar todo)</a>
+        <a class="btn btn-whatsapp d-flex align-items-center" routerLink="/admin/ventas">Ordenes pendientes</a>
+    </div>
     <hr>
 </div>

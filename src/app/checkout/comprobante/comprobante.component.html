@@ -1,0 +1,29 @@
+<div class="container">
+    <br>
+    <div class="card shadow p-3">
+        <div class="card-body">
+            <h1 class="text-center">¡Compra realizada! Aquí tiene su comprobante</h1>
+            <hr>
+        </div>
+        <div class="card-body border" *ngIf="pago !== null">
+            <p>Compra a nombre de: <strong>{{pago.card.cardholder.name}}</strong></p>
+            <div class="container">
+                <p>Compró:</p>
+                <hr>
+                <ul>
+                    <li *ngFor="let producto of pago.additionalInfo.items">{{producto.title}}</li>
+                </ul>
+                <hr>
+                <p>Por un total de: {{pago.transactionDetails.totalPaidAmount | currencyArs}}</p>
+                <div class="d-flex justify-content-center">
+                    <qrcode [qrdata]="url"></qrcode>
+                </div>
+                <hr>
+                <h4 >Estado: <span class="text-info">{{pago.statusDetail}}</span></h4>
+            </div>
+        </div>
+
+
+    </div>
+    <br>
+</div>

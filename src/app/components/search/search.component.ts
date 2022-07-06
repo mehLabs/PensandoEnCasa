@@ -10,18 +10,16 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-  products:Producto[];
+  products:Producto[] = [];
 
   constructor(
     private searchS:SearchService,
     public fbStorage:FirebaseStorageService,
     private cart:CartService
-    ) {
-    this.products = searchS.getSearched();
-   }
+    ) {}
 
   ngOnInit(): void {
-
+    this.products = this.searchS.getSearched();
   }
   
   addToCart(product:Producto){
