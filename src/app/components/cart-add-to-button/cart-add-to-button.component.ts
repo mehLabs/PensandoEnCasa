@@ -64,6 +64,7 @@ export class CartAddToButtonComponent implements OnInit {
 
   removeFromCart(product:Producto,id:number){
     this.cart.removeItem(product);
+    this.cart.minusQuant();
     let boton = document.getElementById('btn'+id);
     let botonText = document.getElementById('btnText'+id);
     let plusMinus = document.getElementById("plusMinus"+id);

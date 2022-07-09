@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Producto } from '../interfaces/producto';
-import { CookiesService } from './cookies.service';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
@@ -9,9 +9,10 @@ import { LocalStorageService } from './local-storage.service';
 export class CartService implements OnInit{
 
   items: Producto[] = [];
+  cant: number = 0;
+  quant: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   constructor(private lStorage:LocalStorageService){
-    console.log(lStorage.readKey("products"));
     if (lStorage.readKey("products").length > 0){
       this.items = lStorage.readKey("products");
     }else{
@@ -24,6 +25,9 @@ export class CartService implements OnInit{
   }
 
   addToCart(product:Producto):number{
+    
+    this.addQuant();
+    
     let includes = false;
     let iter:number = -1;
     let cant:number = 1;
@@ -35,8 +39,7 @@ export class CartService implements OnInit{
       }
     }
     if (includes){
-      console.log(iter);
-      product.cantidad = this.items[iter].cantidad +1;
+      product.cantidad = this.items[iter].cantidad +1; //El item producto almacena la cantidad que se va a comprar
       cant = product.cantidad;
       this.removeItem(product);
     }else{
@@ -47,7 +50,30 @@ export class CartService implements OnInit{
     return cant;
   }
 
+  addQuant(){
+    this.cant += 1;
+    this.quant.next(this.cant);
+  }
+  minusQuant(){
+    this.cant -= 1;
+    this.quant.next(this.cant);
+    console.log("cant:"+this.cant);
+  }
+
+  getQuantity(){
+    let items = this.getItems();
+    let cant = 0;
+    for (let item of items){
+      cant += item.cantidad;
+    }
+    this.cant = cant;
+    this.quant.next(this.cant);
+
+    return this.quant.asObservable();
+  }
+
   minusItem(product:Producto):boolean{
+    this.minusQuant();
     let iter:number = -1;
     for (let i=0;i<this.items.length;i++){
       if (product.id_article === this.items[i].id_article){
@@ -74,6 +100,9 @@ export class CartService implements OnInit{
   }
 
   removeItem(product:Producto){
+    for (let i=0; i<product.cantidad;i++){
+      this.minusItem;
+    }
     this.items = this.items.filter(item => item.id_article !== product.id_article);
     this.lStorage.removeFromKey("products",product);
   }

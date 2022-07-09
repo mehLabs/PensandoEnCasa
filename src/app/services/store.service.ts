@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Observer, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, Observer, Subject, throwError } from 'rxjs';
 import {environment as env} from '../../environments/environment';
 import {Producto} from 'src/app/interfaces/producto';
 import { Categoria } from '../interfaces/categoria';
@@ -10,31 +10,24 @@ import { Promo } from '../interfaces/promo';
   providedIn: 'root'
 })
 export class StoreService {
-  data:any;
+  data:BehaviorSubject<any> = new BehaviorSubject<any>(0);
+  ofertas:BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  loaded:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http:HttpClient) {
     this.http.get<any>(
-      `${env.dev.serverUrl}/api/public/articulos`).subscribe(dataServer => this.data = dataServer);
+      `${env.dev.serverUrl}/api/public/articulos`).subscribe(dataServer => {
+        this.data.next(dataServer);
+        this.loaded.next(true);
+      });
    }
 
   obtenerDatos():Observable<any>{
+      return this.data;
+  }
 
-
-    if (this.data !== null && this.data !== undefined){
-      return new Observable((observer) => {
-        observer.next(this.data);
-        return {
-          unsubscribe() {}
-        };
-      });
-    }else{
-      this.http.get<any>(
-        `${env.dev.serverUrl}/api/public/articulos`).subscribe(datos => {
-          this.data = datos;
-        });
-      return this.http.get<any>(
-        `${env.dev.serverUrl}/api/public/articulos`);
-    }
+  isLoaded(){
+    return this.loaded.asObservable();
   }
 
   isReady(){
@@ -93,9 +86,13 @@ export class StoreService {
   }
 
   getOfertas():Observable<any>{
-    return this.http.get<any>(
-      `${env.dev.serverUrl}/api/public/promos`
-    )
+    this.http.get<any>(
+      `${env.dev.serverUrl}/api/public/promos`).subscribe(promos => {
+        this.ofertas.next(promos);
+        this.loaded.next(true);
+      });
+
+    return this.ofertas.asObservable();
   }
 
   getOferta(id:number | string):Observable<any>{

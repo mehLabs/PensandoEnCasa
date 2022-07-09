@@ -55,6 +55,7 @@ import { BtnInicioComponent } from './components/btn-inicio/btn-inicio.component
 import { ArrepentimientoComponent } from './components/pages/arrepentimiento/arrepentimiento.component';
 import { AdminPromosComponent } from './components/admin/admin-promos/admin-promos.component';
 import { DevMercadopagoComponent } from './dev/dev-mercadopago/dev-mercadopago.component';
+import { CartButtonComponent } from './components/cart-button/cart-button.component';
 const firebase = initializeApp(environment.firebaseConfig);
 
 @NgModule({
@@ -98,7 +99,8 @@ const firebase = initializeApp(environment.firebaseConfig);
     BtnInicioComponent,
     ArrepentimientoComponent,
     AdminPromosComponent,
-    DevMercadopagoComponent
+    DevMercadopagoComponent,
+    CartButtonComponent
   ],
   imports: [
     BrowserModule,

@@ -11,7 +11,7 @@ export class MainSpinnerComponent implements OnInit {
 
   constructor(private data:StoreService){
     this.cargandoTexto = "Cargando aplicación web..."
-    data.obtenerDatos().subscribe(data =>{
+    data.isLoaded().subscribe(data =>{
       document.getElementById("mainSpinner")?.classList.add("out");
       this.cargandoTexto = "";
     })

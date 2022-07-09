@@ -10,10 +10,8 @@
     <hr>
   </div>
 
-  <div *ngIf="products === null || products === undefined || products.length < 1" class="d-flex justify-content-center flex-wrap">
+  <div *ngIf="(products === null || products === undefined || products.length < 1) && loaded" class="d-flex justify-content-center flex-wrap">
     <h2 class="text-center">¡Parece que no hay artículos en esta sección!</h2>
-    <br>
-    <a routerLink="/home" class="btn btn-mostaza">Inicio</a>
   </div>
 
   <div *ngFor="let product of products; index as productId"> <!-- Por cada producto del .json se arma una tarjeta con los atributos del producto-->

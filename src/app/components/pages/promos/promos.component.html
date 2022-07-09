@@ -5,7 +5,7 @@
         <div class="card col-12">
             <div class="card-body">
                 <h1 class="card-title">Ofertas del día {{today | date}}</h1>
-                <h3 class="card-text">Se acaban en {{hours}}:{{minutes}}:{{seconds}}</h3>
+                <h3 class="card-text">Se acaban en {{hours | number:"2.0-0"}}:{{minutes | number:"2.0-0"}}:{{seconds | number:"2.0-0"}}</h3>
             </div>
         </div>
 

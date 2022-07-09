@@ -64,6 +64,14 @@
     font-size: 1.5rem;
     font-weight: bold;
 }
+
+.text-arrow{
+    font-size: 3rem;
+}
+.text-justify{
+    text-align: justify;
+}
+
 @media (min-width:992px) {
     .product-body{
         overflow:visible;

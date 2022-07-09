@@ -48,8 +48,19 @@ export class HomeComponent implements OnInit {
         this.rol = userRole;
       }
     });
+    this.dataStore.obtenerDatos().subscribe((data:any[]) =>{
+      if (data !== null && data !== undefined && data.length > 0){
+        let sortedData = data.sort((n1:any,n2:any) => {return n1.precio - n2.precio});
+        let count = 0;
+        for (let i=0;i<sortedData.length;i++){
+          if (sortedData[i].img1 !== null){
+            this.bestProducts[count] = sortedData[i];
+            count++;
+          }
+        }
+      }
+    });
     this.dataStore.getOfertas().subscribe(ofertas => {
-      console.log(ofertas);
       for (let index = 0; index < ofertas.length; index++) {
         if (ofertas[index].img1 === null || ofertas[index].img1 === undefined){
           ofertas.slice(index,1);
@@ -60,19 +71,6 @@ export class HomeComponent implements OnInit {
         this.offers.push(ofertas);
       }
     })
-    this.dataStore.obtenerDatos().subscribe(data =>{
-      if (data !== null && data !== undefined){
-        let sortedData = data.sort((n1:any,n2:any) => {return n1.precio - n2.precio});
-        let count = 0;
-        for (let i=0;i<sortedData.length;i++){
-          if (sortedData[i].img1 !== null){
-            this.bestProducts[count] = sortedData[i];
-            count++;
-          }
-        }
-        console.log(this.bestProducts);
-      }
-    });
     
   }
 

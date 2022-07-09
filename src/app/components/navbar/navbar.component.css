@@ -11,12 +11,6 @@ nav {
 .navbar-toggler{
     border: 0;
 }
-i{
-    color: #FFDB58;
-    -webkit-text-stroke: 1px black;
-}
-
-
 
 .active{
     background-color: var(--bs-blue);
@@ -44,6 +38,7 @@ i {
     color:#FFDB58;
     text-decoration: none;
     text-shadow: 0px 0px 2px black;
+    -webkit-text-stroke: 1px black;
 }
 
 .nav-link {

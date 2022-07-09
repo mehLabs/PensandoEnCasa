@@ -43,6 +43,7 @@ export class ArticlesComponent implements OnInit {
         this.category = params['category'];
         if (this.category === undefined || this.category === null){
           this.dataStore.obtenerDatos().subscribe(data => {
+            console.log(data);
             this.products=data;
             this.loaded=true;
           })

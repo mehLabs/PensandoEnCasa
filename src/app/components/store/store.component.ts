@@ -9,7 +9,7 @@ import {environment as env} from '../../../environments/environment';
   styleUrls: ['./store.component.css']
 })
 export class StoreComponent implements OnInit {
-  rol:any = null;
+  rol:any;
 
   constructor(private auth: AuthService) {
    }
@@ -17,6 +17,7 @@ export class StoreComponent implements OnInit {
   ngOnInit(): void {
     let userRole:any = null;
     this.auth.user$.subscribe(data => {
+      console.log(data);
       if (data !== null && data !== undefined ){
         userRole = data[`${env.auth.audience}`+"roles"][0];
         
