@@ -16,7 +16,7 @@ export const environment = {
     audience: "https://infinite-refuge-54136.herokuapp.com/"
   },
   dev: {
-    serverUrl:"https://pec-v75zvqnarq-rj.a.run.app",
+    serverUrl:"https://pensandoencasatesting.herokuapp.com",
     localUrl:"http://localhost:7000"
   }
 };

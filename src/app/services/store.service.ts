@@ -10,9 +10,10 @@ import { Promo } from '../interfaces/promo';
   providedIn: 'root'
 })
 export class StoreService {
-  data:BehaviorSubject<any> = new BehaviorSubject<any>(0);
-  ofertas:BehaviorSubject<any> = new BehaviorSubject<any>([]);
-  loaded:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  protected data:BehaviorSubject<any> = new BehaviorSubject<any>(0);
+  protected ofertas:BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  protected loaded:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  protected categorias:BehaviorSubject<any> = new BehaviorSubject(undefined);
 
   constructor(private http:HttpClient) {
     this.http.get<any>(
@@ -20,6 +21,18 @@ export class StoreService {
         this.data.next(dataServer);
         this.loaded.next(true);
       });
+      
+      
+    this.http.get<any>(
+      `${env.dev.serverUrl}/api/public/promos`).subscribe(promos => {
+        this.ofertas.next(promos);
+        this.loaded.next(true);
+      });
+
+    this.http.get<any>(`${env.dev.serverUrl}/api/public/categoria/`).subscribe( categorias => {
+      this.categorias.next(categorias);
+      this.loaded.next(true);
+    });
    }
 
   obtenerDatos():Observable<any>{
@@ -58,7 +71,7 @@ export class StoreService {
   }
 
   obtenerCategorias():Observable<any>{
-    return this.http.get<any>(`${env.dev.serverUrl}/api/public/categoria/`);
+    return this.categorias.asObservable();
   }
 
   eliminarProducto(producto:any):Observable<boolean>{
@@ -86,11 +99,6 @@ export class StoreService {
   }
 
   getOfertas():Observable<any>{
-    this.http.get<any>(
-      `${env.dev.serverUrl}/api/public/promos`).subscribe(promos => {
-        this.ofertas.next(promos);
-        this.loaded.next(true);
-      });
 
     return this.ofertas.asObservable();
   }

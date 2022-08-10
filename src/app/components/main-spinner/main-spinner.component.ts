@@ -9,14 +9,14 @@ import { StoreService } from 'src/app/services/store.service';
 export class MainSpinnerComponent implements OnInit {
   cargandoTexto:string;
 
-  constructor(private data:StoreService){
+  constructor(){
     this.cargandoTexto = "Cargando aplicación web..."
-    data.isLoaded().subscribe(data =>{
+    setTimeout(() => {
       document.getElementById("mainSpinner")?.classList.add("out");
       this.cargandoTexto = "";
-    })
+    }, 200);
   }
-
+    
   ngOnInit(): void {
   }
 

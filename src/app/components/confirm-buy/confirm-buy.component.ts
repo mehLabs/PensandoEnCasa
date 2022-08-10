@@ -11,26 +11,30 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class ConfirmBuyComponent implements OnInit {
   preference:Preferencia = {
+    "additionalInfo": {
+      "address":{
+        "floor": '',
+        "dto":'',
+        "notes":''
+      }
+    },
     "items": [],
     "payer": {
-      "name": undefined,
-      "surname" : undefined,
-      "email" : undefined,
+      "name": '',
+      "surname" : '',
+      "email" : '',
       "phone" : {
-        "areaCode" : undefined,
-        "number" : undefined
+        "areaCode" : '',
+        "number" : ''
       },
       "identification" : {
         "type" : 'DNI',
-        "number" : undefined,
+        "number" : '',
       },
       "address" : {
         "streetName" : '',
-        "streetNumber" : 0,
-        "floor": '',
-        "dto":'',
-        "zipCode" : undefined,
-        "notes":undefined
+        "streetNumber" : '',
+        "zipCode" : '',
 
       }
     }
@@ -60,10 +64,10 @@ export class ConfirmBuyComponent implements OnInit {
       dni:new FormControl(this.preference.payer.identification.number,[Validators.required]),
       streetName:new FormControl(this.preference.payer.address.streetName,[Validators.required]),
       streetNumber:new FormControl(this.preference.payer.address.streetNumber,[Validators.required]),
-      floor :new FormControl(this.preference.payer.address.floor),
-      dto :new FormControl(this.preference.payer.address.dto),
+      floor :new FormControl(this.preference.additionalInfo.address.floor),
+      dto :new FormControl(this.preference.additionalInfo.address.dto),
       zipCode :new FormControl(this.preference.payer.address.zipCode),
-      notes :new FormControl(this.preference.payer.address.notes),
+      notes :new FormControl(this.preference.additionalInfo.address.notes),
     })
 
     this.loadScript();
@@ -83,13 +87,26 @@ export class ConfirmBuyComponent implements OnInit {
 
     if(this.infoForm.valid){
       this.loading = true;
-      let preferencia = this.preference;
-  
-      preferencia.payer.address.streetName = preferencia.payer.address.streetName+ " " +preferencia.payer.address.floor + preferencia.payer.address.dto;
-      console.log(preferencia);
+      let preferencia = this.infoForm.value;
+      this.preference.additionalInfo.address.dto = preferencia.dto;
+      this.preference.additionalInfo.address.floor = preferencia.floor;
+      this.preference.additionalInfo.address.notes = preferencia.notes;
+
+      this.preference.payer.address.streetName = preferencia.streetName;
+      this.preference.payer.address.streetNumber = preferencia.streetNumber;
+      this.preference.payer.address.zipCode = preferencia.zipCode;
+
+      this.preference.payer.email = preferencia.email;
+      this.preference.payer.name = preferencia.name;
+      this.preference.payer.surname = preferencia.surname;
+      this.preference.payer.phone.areaCode = preferencia.areaCode;
+      this.preference.payer.phone.number = preferencia.number;
+      this.preference.payer.identification.number = preferencia.dni;
+
+      console.log(this.preference);
   
       
-      this.mercadopago.comprar(preferencia).subscribe(data => {
+      this.mercadopago.comprar(this.preference).subscribe(data => {
         console.log("Redirecting to MP");
         console.log(data);
         window.location.href = data;

@@ -36,6 +36,15 @@ export class ArticlesComponent implements OnInit {
     ) {}
 
   ngOnInit(): void {
+    let userRole:any;
+    this.auth.user$.subscribe(data => {
+      console.log(data);
+      if (data !== null && data !== undefined ){
+        userRole = data[`${env.auth.audience}`+"roles"][0];
+        
+        this.rol = userRole;
+      }
+    })
     this.titleService.setTitle("Lista de productos - Pensando en Casa");    
 
     this.route.queryParams

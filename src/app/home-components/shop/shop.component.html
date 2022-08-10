@@ -7,11 +7,22 @@
     </h5>
 </div>
 <div class="carousel shadow px-2 d-flex w-100 justify-content-center">
-    <div *ngIf="!loaded" class="d-flex justify-content-center align-items-center spinner">
-        <app-spinner [loaded]="loaded"></app-spinner>
+    <ng-container *ngIf="!loaded">
+        <div *ngFor="let number of Array.from(Array(6).keys())" class="category-item d-flex flex-column">
+            <div class="placeholder-image category-img d-flex align-items-center justify-content-center">
+                <app-spinner [loaded]="loaded"></app-spinner>
+            </div>
+            <h3 class="placeholder-glow m-1 d-flex justify-content-between">
+                <span class="placeholder col-6"></span>
+                <span class="placeholder col-5"></span>
+            </h3>
+        </div>
+    </ng-container>
+    <div *ngIf="loaded">
+        <a class="category-item d-flex flex-column" routerLink="/articles" [queryParams]="{ category: category.id_categoria}" *ngFor="let category of categorias">
+            <img class="category-img" [src]="category.img" alt="" [alt]="category.nombre">
+            <h3>{{category.nombre}}</h3>
+        </a>
     </div>
-    <a class="category-item d-flex flex-column" routerLink="/articles" [queryParams]="{ category: category.id_categoria}" *ngFor="let category of categorias">
-        <img [src]="category.img" alt="" [alt]="category.nombre">
-        <h3>{{category.nombre}}</h3>
-    </a>
+
 </div>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Categoria } from 'src/app/interfaces/categoria';
 import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
 import { StoreService } from 'src/app/services/store.service';
 
@@ -23,7 +24,8 @@ export class CategoriesComponent implements OnInit {
   mostrarForm:boolean = false;
 
   constructor(private servicio: StoreService, public firebase:FirebaseStorageService) { }
-  @Output() newCat: EventEmitter<any> = new EventEmitter();
+  @Output() newCat: EventEmitter<Categoria> = new EventEmitter();
+  @Output() deleteCat: EventEmitter<Categoria> = new EventEmitter();
 
   ngOnInit(): void {
     this.servicio.obtenerCategorias().subscribe(categorias => {
@@ -50,16 +52,16 @@ export class CategoriesComponent implements OnInit {
   }
 
   async onEnviar(){
-    this.loadingMain = true;
     if(this.imgMain !== null){
-      await this.subirImagen(this.juntarTodoYMandarlo);
+      this.loadingMain = true;
+      await this.subirImagen(this.juntarTodoYMandarlo,this.newCat);
     }else{
       alert("Falta una imagen para la categoría");
     } 
   }
 
 
-  juntarTodoYMandarlo(url:any,nome:any,des:any,id:any,servicio:any,setNull:any){
+  juntarTodoYMandarlo(url:any,nome:any,des:any,id:any,servicio:any,setNull:any,emit:any){
     console.log("juntar "+url);
     let {nombre,descripcion,img,id_categoria} = this || {};
     let categoria = {nombre,descripcion,img,id_categoria};
@@ -77,9 +79,7 @@ export class CategoriesComponent implements OnInit {
 
       alert("CATEGORIA AGREGADA");
       console.log(data);
-      () => {
-        this.newCat.emit(data);
-      }
+      emit.emit(data);
     });
 
   }
@@ -95,17 +95,17 @@ export class CategoriesComponent implements OnInit {
     this.loadingMain = false;
   }
 
-  async subirImagen(callback:any){
+  async subirImagen(callback:any,emit:any){
     let urle = '';
     let imagen:object = this.imgMain.target.files[0];
-    await this.uploadFile(imagen,this.nombre+"cat",callback);
+    await this.uploadFile(imagen,this.nombre+"cat",callback,emit);
   }
 
   prepImagen($event:any){
     this.imgMain = $event;
   }
 
-  async uploadFile(file:any,name:string,callback:any){
+  async uploadFile(file:any,name:string,callback:any,emit:any){
     let reader = new FileReader();
     let url:string = '';
 
@@ -116,7 +116,7 @@ export class CategoriesComponent implements OnInit {
       await this.uploadFileToFB(reader,name).then( urle => {
         url = urle;
         console.log(url);
-        callback(url,this.nombre,this.descripcion,this.id_categoria,this.servicio,this.setNull);
+        callback(url,this.nombre,this.descripcion,this.id_categoria,this.servicio,this.setNull,emit);
       });
     }
   }
@@ -135,10 +135,11 @@ export class CategoriesComponent implements OnInit {
     this.img = image;
   }
 
-  eliminarCategoria(elemento:any,id:number){
+  eliminarCategoria(categoria:any,id:number){
     this.loading[id] = true;
-    this.servicio.eliminarCategoria(elemento).subscribe((eliminado:Boolean) =>{
+    this.servicio.eliminarCategoria(categoria).subscribe((eliminado:Boolean) =>{
       if (eliminado === true){
+        this.deleteCat.emit(categoria);
         this.categories.splice(id,1);
         this.filas.splice(id,1);
       }else{

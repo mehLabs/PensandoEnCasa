@@ -18,7 +18,7 @@
     max-width: 9rem;
     overflow: hidden;
 }
-.category-item img{
+.category-item .category-img{
     height: 18rem;
     width: 9rem;
     object-fit: cover;
@@ -43,4 +43,9 @@ a{
     font-weight: 200;
     color: rgb(99, 99, 99);
     text-align: left;
+}
+.placeholder-image{
+    background-color: dimgray;
+    height: 400px;
+    width: 400px;
 }

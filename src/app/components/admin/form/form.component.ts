@@ -3,6 +3,7 @@ import { StoreService } from 'src/app/services/store.service';
 import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
 import $ from "jquery";
 import { Router } from '@angular/router';
+import { Categoria } from 'src/app/interfaces/categoria';
 
 type Nullable<T> = T | null;
 
@@ -41,10 +42,20 @@ export class FormComponent implements OnInit{
 
     
   //Categoria
-  categories:any;
+  categories:Categoria[] = [];
 
-  newCat(categoria:any){
+  newCat(categoria:Categoria){
     this.categories.push(categoria);
+    console.log("the new categories:");
+    console.log(this.categories);
+  }
+
+  deleteCat(categoria:Categoria){
+    console.log("la categoria");
+    console.log(categoria);
+    let newCategories = this.categories.filter( cat => cat.id_categoria !== categoria.id_categoria);
+    console.log(newCategories);
+    this.categories = newCategories;
   }
 
     

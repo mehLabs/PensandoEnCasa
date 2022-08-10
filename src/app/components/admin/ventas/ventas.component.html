@@ -12,16 +12,24 @@
                     <button class="btn btn-primary" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#venta_'+index">Ver detalles</button>
                 </div>
                 <div [id]="'venta_'+index" class="collapse">
+                    <p *ngIf="venta.additionalInfo !== undefined && venta.additionalInfo.payer !== undefined">
+                        Nombre: {{venta.additionalInfo.payer.firstName}} {{venta.additionalInfo.payer.lastName}}
+                    </p>
                     <p>
-                        Nombre: {{venta.additionalInfo.payer.firstName}} {{venta.additionalInfo.payer.lastName}} <br>
                         <span *ngIf="venta.additionalInfo.payer.address !== undefined">
                             Dirección: {{venta.additionalInfo.payer.address.streetName}} {{venta.additionalInfo.payer.address.streetNumber}} {{venta.additionalInfo.payer.address.floor}} {{venta.additionalInfo.payer.address.dto}} <br>
                         </span>
-                        {{venta.payer.identification.type}}: {{venta.payer.identification.number}} <br>
+                    </p>
+                    <p *ngIf="venta.payer !== undefined && venta.payer.identification !== undefined">
+                        {{venta.payer.identification.type}}: {{venta.payer.identification.number}}
+                    </p>
+                    <p *ngIf="venta.additionalInfo !== undefined && venta.additionalInfo.payer !== undefined && venta.additionalInfo.payer.phone !== undefined">
                         Teléfono: <a [href]="'tel:'+venta.additionalInfo.payer.phone.areaCode + venta.additionalInfo.payer.phone.number">{{venta.additionalInfo.payer.phone.areaCode}} {{venta.additionalInfo.payer.phone.number}}</a>
                             <a title="whatsapp" class="ms-2 bg-success text-decoration-none py-1 px-2 rounded" [href]="'https://api.whatsapp.com/send?phone=54'+venta.additionalInfo.payer.phone.areaCode + venta.additionalInfo.payer.phone.number" target="_blank" rel="noopener">
                                 <i class="bi bi-whatsapp text-white"></i>
                             </a> <br>
+                    </p>
+                    <p>
                         Fecha de compra: {{venta.dateCreated}} <strong>(hace {{getDate(venta.dateCreated)}} días)</strong>
                     </p>
                     <hr>

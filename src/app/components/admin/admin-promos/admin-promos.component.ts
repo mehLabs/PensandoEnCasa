@@ -5,7 +5,7 @@ import { FirebaseStorageService } from 'src/app/services/firebase-storage.servic
 import { StoreService } from 'src/app/services/store.service';
 
 @Component({
-  selector: 'app-promos',
+  selector: 'app-admin-promos',
   templateUrl: './admin-promos.component.html',
   styleUrls: ['./admin-promos.component.css']
 })

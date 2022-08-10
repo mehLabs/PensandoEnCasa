@@ -6,14 +6,25 @@
     <h3>Datos personales</h3>
     <form (ngSubmit)="onBuy()" id="form" [formGroup]="infoForm">
         <input type="hidden" id="deviceId">
-        <div class="form-floating mb-3">
-            <input formControlName="name" required id="nombre" name="nombre" class="form-control" type="text" placeholder="Tu Nombre">
-            <label for="nombre">Nombre de pila</label>
-            <div *ngIf="infoForm.get('name')?.invalid && (infoForm.get('name')?.dirty || infoForm.get('name')?.touched)"
-                class="alert alert-danger">
-                Requerido
+        <div class="row">
+            <div class="form-floating mb-3 col-6">
+                <input formControlName="name" required id="nombre" name="nombre" class="form-control" type="text" placeholder="Tu Nombre">
+                <label for="nombre" class="ms-2">Nombre</label>
+                <div *ngIf="infoForm.get('name')?.invalid && (infoForm.get('name')?.dirty || infoForm.get('name')?.touched)"
+                    class="alert alert-danger">
+                    Requerido
+                </div>
+            </div>
+            <div class="form-floating mb-3 col-6">
+                <input formControlName="surname" required id="surname" name="surname" class="form-control" type="text" placeholder="Tu apellido">
+                <label for="surname" class="ms-2">Apellido</label>
+                <div *ngIf="infoForm.get('surname')?.invalid && (infoForm.get('name')?.dirty || infoForm.get('name')?.touched)"
+                    class="alert alert-danger">
+                    Requerido
+                </div>
             </div>
         </div>
+
         <div class="form-floating mb-3">
             <input formControlName="dni" required id="dni" name="dni" class="form-control" type="number" placeholder="Tu dni">
             <label for="nombre">DNI</label>

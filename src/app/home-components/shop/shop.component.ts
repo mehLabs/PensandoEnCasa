@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta } from '@angular/platform-browser';
 import { StoreService } from 'src/app/services/store.service';
 
 @Component({
@@ -12,13 +11,15 @@ export class ShopComponent implements OnInit {
   buy:boolean = true;
   loaded:boolean = false;
 
-  constructor(private storeService: StoreService, private metaService:Meta) {
+  Array = Array;
+
+  constructor(private storeService: StoreService) {
    }
 
   ngOnInit(): void {
     this.storeService.obtenerCategorias().subscribe(categoriasS => {
       this.categorias=categoriasS;
-      this.loaded = true;
+      //this.loaded = true;
       
       let concatCat:string='';
       for (let categoria of categoriasS){
@@ -26,6 +27,15 @@ export class ShopComponent implements OnInit {
       }
       //this.metaService.updateTag(null,"tag_attribute='Artículos del hogar, Bahía Blanca. '"+concatCat);
     });
+
+    this.storeService.isLoaded().subscribe(data =>{
+      //this.loaded = data;
+    })
+
+    setTimeout(() => {
+      this.loaded = true;
+    }, 5000);
+  
   }
 
   verMas(){
