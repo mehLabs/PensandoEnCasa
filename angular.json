@@ -104,5 +104,8 @@
       }
     }
   },
-  "defaultProject": "Storification"
+  "defaultProject": "Storification",
+  "cli": {
+    "analytics": "dcd57767-4b12-4ffa-9170-180e09a6e299"
+  }
 }

@@ -2,29 +2,29 @@
     <div id="carouselHome" class="carousel carousel-dark slide shadow" data-bs-ride="carousel">
       <div class="carousel-indicators">
         <button title="carousel-item" type="button" data-bs-target="#carouselHome" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <div *ngIf="offers.length > 1">
+        <ng-container *ngIf="offers.length > 1">
           <button title="carousel-item" type="button" data-bs-target="#carouselHome" *ngFor="let offer of offers | slice:1;index as index" [attr.data-bs-slide-to]="index+1" class="active" aria-current="true" [attr.aria-label]="'Slide '+(index+2)"></button>
-        </div>
+        </ng-container>
         <button title="carousel-item" type="button" data-bs-target="#carouselHome" *ngFor="let product of bestProducts;index as index" [attr.data-bs-slide-to]="offers.length+index" class="active" aria-current="true" [attr.aria-label]="'Slide '+(offers.length+index+2)"></button>
       </div>
       <div class="carousel-inner">
         <div class="carousel-item div-mattress active product day-offer">
           <div class="product-body w-100">
-            <img title="imagen principal" id="mainImage" [src]="offers[0].img" [alt]="offers[0].alt">
+            <img title="imagen principal" class="img-fluid" id="mainImage" [src]="offers[0].img" [alt]="offers[0].alt">
           </div>
         </div>
         <div class="carousel-item div-mattress product day-offer" *ngFor="let offer of offers | slice:1, let i = index">
-          <div class="product-body w-100">
+          <a [routerLink]="['/articles/article/',offer.id]" class="d-flex justify-content-center flex-wrap">
             <img [src]="offer.img" alt='' [alt]="offer.alt" >
-          </div>
+          </a>
         </div>
-        <div *ngIf="offers.length<3 && bestProducts.length > 0">
+        <ng-container *ngIf="offers.length && bestProducts.length > 0">
           <div class="carousel-item div-mattress product" *ngFor="let product of bestProducts">
             <a [routerLink]="['/articles/article/',product.id_article]" class="product-body w-100 d-flex justify-content-center flex-wrap">
               <img title="Product offer" [src]="fbStorage.obtenerImgURL(product.img1)">
             </a>
           </div>
-        </div>
+        </ng-container>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -94,8 +94,10 @@
                 </g>
                 </svg>
             </div>
-            <h3 class="text-justify">No salgas, nosotros te lo llevamos</h3>
-            <p>Ya sea por salud, tiempo o simplemente comodidad, te acercamos las cosas a vos para que no tengas que salir. ¡Envío gratis!</p>
+            <h3 class="text-center">No salgas, nosotros te lo llevamos</h3>
+            <p>Ya sea por salud, tiempo o simplemente comodidad, te acercamos las cosas a vos para que no tengas que salir. <br> 
+              <strong>¡Envío gratis!</strong>
+            </p>
             <a routerLink="/envios" class="text-black">Saber más</a>
             
             <hr>

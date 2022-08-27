@@ -14,37 +14,40 @@
     <h2 class="text-center">¡Parece que no hay artículos en esta sección!</h2>
   </div>
 
-  <div *ngFor="let product of products; index as productId"> <!-- Por cada producto del .json se arma una tarjeta con los atributos del producto-->
-    <div class="no-link">
-      <div class="card mb-3 shadow-sm">
-          <div class="row g-0">
-            <a [routerLink]="['/articles/article',product.id_article]" class="no-link d-flex justify-content-center">
-              <img [src]="fbStorage.obtenerImgURL(product.img1)" class="img-fluid rounded" alt="...">
-            </a>
-            <div class="col-md-12">
-              <div class="card-body">
-                <div class="name-plus-x d-flex justify-content-between h-40">
-                  <a   [routerLink]="['/articles/article',product.id_article]" class="no-link">
-                    <span class="card-title">{{product.nombre}}</span> <!-- agrego un +1 para que no empiece a contar de 0 -->
-                  </a>
-                  <i class="bi bi-x-lg" *ngIf="rol === 'ADMIN'" (click)="eliminarProducto(product)"></i>
-                </div>
-                <a class="card-bottom" [routerLink]="['/articles/article',product.id_article]" class="no-link">
-                  <p class="card-text">{{product.descripcion}}</p>
-                  <h3 class="card-text pb-1"><span class="text-whatsapp">{{product.precio | currencyArs }}</span></h3>
-                </a>
-                <div class="d-flex justify-content-between">
-                  <div class="left">
-                    <button class="btn btn-mostaza" [routerLink]="['/articles/article',product.id_article]">Ver detalles</button>
-                    <app-btn-social-media [id]="product.id_article" [precio]="product.precio" [title]="product.nombre"></app-btn-social-media>
+  <div class="row my-2">
+
+    <div *ngFor="let product of products; index as productId" class="col-lg-6"> <!-- Por cada producto del .json se arma una tarjeta con los atributos del producto-->
+      <div class="no-link">
+        <div class="card mb-3 shadow-sm">
+            <div class="row g-0">
+              <a [routerLink]="['/articles/article',product.id_article]" class="no-link d-flex justify-content-center">
+                <img [src]="fbStorage.obtenerImgURL(product.img1)" class="img-fluid rounded" alt="...">
+              </a>
+              <div class="col-md-12">
+                <div class="card-body">
+                  <div class="name-plus-x d-flex justify-content-between h-40">
+                    <a   [routerLink]="['/articles/article',product.id_article]" class="no-link">
+                      <span class="card-title">{{product.nombre}}</span> <!-- agrego un +1 para que no empiece a contar de 0 -->
+                    </a>
+                    <i class="bi bi-x-lg" *ngIf="rol === 'ADMIN'" (click)="eliminarProducto(product)"></i>
                   </div>
-
-                  <app-cart-add-to-button [product]="product" [productId]="productId"></app-cart-add-to-button>
-
+                  <a class="card-bottom" [routerLink]="['/articles/article',product.id_article]" class="no-link">
+                    <p class="card-text">{{product.descripcion}}</p>
+                    <h3 class="card-text pb-1"><span class="text-whatsapp">{{product.precio | currencyArs }}</span></h3>
+                  </a>
+                  <div class="d-flex justify-content-between">
+                    <div class="left">
+                      <button class="btn btn-mostaza" [routerLink]="['/articles/article',product.id_article]">Ver detalles</button>
+                      <app-btn-social-media [id]="product.id_article" [precio]="product.precio" [title]="product.nombre"></app-btn-social-media>
+                    </div>
+  
+                    <app-cart-add-to-button [product]="product" [productId]="productId"></app-cart-add-to-button>
+  
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+        </div>
       </div>
     </div>
   </div>

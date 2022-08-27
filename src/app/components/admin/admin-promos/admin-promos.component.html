@@ -4,7 +4,7 @@
 <form [formGroup]="promoForm" (ngSubmit)="onEnviar()" class="container p-4" id="form" >
     <div class="mb-3">
         <label for="alt" class="form-label">Ingresá una descripción para tu promo</label>
-        <input type="text" id="alt" formControlName="alt" title="Descripción para tu promo" class="form-control">
+        <input type="text" id="alt" [(ngModel)]="promo.alt" [ngModelOptions]="{standalone: true}" title="Descripción para tu promo" class="form-control">
 
 
     </div> 
@@ -25,7 +25,7 @@
     <div class="mb-3" *ngIf="promo.type !== ''">
         <label for="type_id" class="form-label">Qué {{promo.type}} está promocionando?</label>
         <select class="form-select" id="type_id" formControlName="type_id" aria-label="id del articulo o categoria">
-            <option *ngFor="let element of getObjId(promo.type)">{{element.nombre}}</option>
+            <option *ngFor="let element of getObjId(promo.type)" [value]="element.id">{{element.nombre}}</option>
         </select>
     </div>
 
@@ -41,4 +41,18 @@
         </button>
     </div>
 
+    
+    
+    
 </form>
+
+<div class="container p-4">
+    <h4 class="mb-4">Tus promos</h4>
+    <div *ngFor="let promo of promos">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <app-admin-promo [promo]="promo"></app-admin-promo>
+            </li>
+        </ul>
+    </div>
+</div>

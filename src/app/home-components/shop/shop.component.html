@@ -18,11 +18,11 @@
             </h3>
         </div>
     </ng-container>
-    <div *ngIf="loaded">
+    <ng-container *ngIf="loaded">
         <a class="category-item d-flex flex-column" routerLink="/articles" [queryParams]="{ category: category.id_categoria}" *ngFor="let category of categorias">
             <img class="category-img" [src]="category.img" alt="" [alt]="category.nombre">
             <h3>{{category.nombre}}</h3>
         </a>
-    </div>
+    </ng-container>
 
 </div>

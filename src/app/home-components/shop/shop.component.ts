@@ -19,7 +19,7 @@ export class ShopComponent implements OnInit {
   ngOnInit(): void {
     this.storeService.obtenerCategorias().subscribe(categoriasS => {
       this.categorias=categoriasS;
-      //this.loaded = true;
+      this.loaded = true;
       
       let concatCat:string='';
       for (let categoria of categoriasS){
@@ -31,10 +31,6 @@ export class ShopComponent implements OnInit {
     this.storeService.isLoaded().subscribe(data =>{
       //this.loaded = data;
     })
-
-    setTimeout(() => {
-      this.loaded = true;
-    }, 5000);
   
   }
 

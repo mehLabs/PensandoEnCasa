@@ -23,14 +23,14 @@ export class HomeComponent implements OnInit {
 
 
   mainBed:Offer = {
-    img: "https://firebasestorage.googleapis.com/v0/b/storification-5a9f7.appspot.com/o/assets%2Ffixed_assets%2F41841e3abc2d627ee9b0620e9a678fa3.jpg?alt=media",
+    img: "https://firebasestorage.googleapis.com/v0/b/storification-5a9f7.appspot.com/o/original.jpg?alt=media",
     alt: "Colchón",
     id: 0,
     type: '',
     type_id:0
   };
   rol:any = null;
-  offers:Array<Offer> = [this.mainBed];
+  offers:Offer[] = [this.mainBed];
   bestProducts:any = [];
 
   constructor(
@@ -62,13 +62,15 @@ export class HomeComponent implements OnInit {
     });
     this.dataStore.getOfertas().subscribe(ofertas => {
       for (let index = 0; index < ofertas.length; index++) {
+        console.log(ofertas[index])
         if (ofertas[index].img1 === null || ofertas[index].img1 === undefined){
           ofertas.slice(index,1);
         };
         
       }
       if (ofertas.length > 0){
-        this.offers.push(ofertas);
+        ofertas.map((oferta:any) => this.offers.push(oferta))
+        console.log(this.offers)
       }
     })
     

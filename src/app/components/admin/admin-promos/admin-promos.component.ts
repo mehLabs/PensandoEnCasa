@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Promo } from 'src/app/interfaces/promo';
 import { FirebaseStorageService } from 'src/app/services/firebase-storage.service';
 import { StoreService } from 'src/app/services/store.service';
@@ -11,7 +12,7 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class AdminPromosComponent implements OnInit {
   promo:Promo = {
-    id: null,
+    id: 0,
     img: '',
     alt: '',
     type: '',
@@ -25,10 +26,16 @@ export class AdminPromosComponent implements OnInit {
   articulos: any = [];
   categorias:any = [];
   selectedType: boolean = false;
+  promos:any = [];
 
-  constructor(private backend:StoreService, private fb:FormBuilder, private firebase:FirebaseStorageService) { }
+  constructor(private router: Router, private backend:StoreService, private fb:FormBuilder, private firebase:FirebaseStorageService) { }
 
   ngOnInit(): void {
+    this.backend.getOfertas().subscribe( lasPromos => {
+      this.promos = lasPromos;
+      console.log(lasPromos)
+    });
+
     this.promoForm = this.fb.group({
       alt: new FormControl(this.promo.alt,[Validators.required]),
       img: new FormControl(this.promo.img,[Validators.required]),
@@ -54,20 +61,22 @@ export class AdminPromosComponent implements OnInit {
 
   onEnviar(){
     this.loadingMain = true;
-    this.subirImagen(this.backend.newOferta(this.promo));
+    this.subirImagen();
   }
 
-  async subirImagen(callback:any){
+
+
+  async subirImagen(){
     let urle = '';
     let imagen:object = this.imgMain.target.files[0];
-    await this.uploadFile(imagen,this.promo.type+"-"+this.promo.type_id,callback);
+    await this.uploadFile(imagen,this.promo.type+"-"+this.promo.type_id);
   }
 
   prepImagen($event:any){
     this.imgMain = $event;
   }
 
-  async uploadFile(file:any,name:string,callback:any){
+  async uploadFile(file:any,name:string){
     let reader = new FileReader();
     let url:string = '';
 
@@ -78,7 +87,11 @@ export class AdminPromosComponent implements OnInit {
       await this.uploadFileToFB(reader,name).then( urle => {
         url = urle;
         console.log(url);
-        callback();
+        this.backend.newOferta(this.promo).subscribe( (retorno => {
+          if (retorno){
+            this.router.navigateByUrl("/");
+          }
+        }));
       });
     }
   }

@@ -13,7 +13,7 @@ export class StoreService {
   protected data:BehaviorSubject<any> = new BehaviorSubject<any>(0);
   protected ofertas:BehaviorSubject<any> = new BehaviorSubject<any>([]);
   protected loaded:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  protected categorias:BehaviorSubject<any> = new BehaviorSubject(undefined);
+  protected categorias:BehaviorSubject<any> = new BehaviorSubject([]);
 
   constructor(private http:HttpClient) {
     this.http.get<any>(
@@ -25,6 +25,7 @@ export class StoreService {
       
     this.http.get<any>(
       `${env.dev.serverUrl}/api/public/promos`).subscribe(promos => {
+        console.log(promos)
         this.ofertas.next(promos);
         this.loaded.next(true);
       });
@@ -111,7 +112,7 @@ export class StoreService {
 
   deleteOferta(id:number | string):Observable<any>{
     return this.http.delete<boolean>(
-      `${env.dev.serverUrl}/api/protected/promos/del`+id
+      `${env.dev.serverUrl}/api/protected/promos/del/`+id
     )
   }
 

@@ -1,15 +1,15 @@
 .whatsapp{
     position: fixed;
     z-index: 99;
-    height: 3.5rem;
-    width: 3.5rem;
+    height: 60px;
+    width: 60px;
     border-radius: 50%;
     border-width: 2px;
     border-style: solid;
     border-color:#FFDB58;
     background-color: #25D366;
-    bottom: 1rem;
-    right: 1rem;
+    bottom: calc(24px + 44px + 24px);
+    right: 24px;
 }
 .small{
     font-size: 1.5rem;

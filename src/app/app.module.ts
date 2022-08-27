@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -56,7 +56,10 @@ import { ArrepentimientoComponent } from './components/pages/arrepentimiento/arr
 import { AdminPromosComponent } from './components/admin/admin-promos/admin-promos.component';
 import { DevMercadopagoComponent } from './dev/dev-mercadopago/dev-mercadopago.component';
 import { CartButtonComponent } from './components/cart-button/cart-button.component';
+import { ChatComponent } from './components/chat/chat.component';
 const firebase = initializeApp(environment.firebaseConfig);
+import { FacebookModule } from 'ngx-facebook';
+import { AdminPromoComponent } from './components/admin/admin-promos/admin-promo/admin-promo.component';
 
 @NgModule({
   declarations: [
@@ -100,9 +103,12 @@ const firebase = initializeApp(environment.firebaseConfig);
     ArrepentimientoComponent,
     AdminPromosComponent,
     DevMercadopagoComponent,
-    CartButtonComponent
+    CartButtonComponent,
+    ChatComponent,
+    AdminPromoComponent
   ],
   imports: [
+    FacebookModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

@@ -46,12 +46,14 @@
           <li class="d-flex align-items-center me-auto w-100 display-4">
             <span>{{singleProduct.precio | currencyArs}}</span> 
           </li>
-          <li class="d-flex align-items-center me-3">
-            <i class="bi bi-tag-fill text-white"></i>
-            <small class="ps-1">Categoría: {{category}}</small>
+          <li class="col-12 d-flex align-items-center me-3">
+            <p>
+              <i class="bi bi-tag-fill text-white"></i>
+              <small class="ps-1">Categoría: {{category}}</small>
+            </p>
           </li>
           <li class="d-flex align-items-center me-5">
-            <p>Descripción: {{singleProduct.descripcion}}</p>
+            <p>Descripción: <br> {{singleProduct.descripcion}}</p>
           </li>
         </ul>
         <div class="d-flex justify-content-center">
