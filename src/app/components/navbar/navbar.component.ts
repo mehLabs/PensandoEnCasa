@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
@@ -8,16 +8,20 @@ import { SearchService } from 'src/app/services/search.service';
 })
 export class NavbarComponent implements OnInit {
   searchText:string = '';
-  width:number;
+  width:number = 0;
   breakpoint:number = 992;
 
-  constructor(private search:SearchService) {
-    this.width = window.innerWidth;
+  constructor(private search:SearchService, private cdRef:ChangeDetectorRef) {
+    this.setWidthSize();
     document.documentElement.style.setProperty('--breakpoint', this.breakpoint.toString() + "px");
-   }
+  }
+
+  setWidthSize(){
+    this.width = window.innerWidth;
+  }
 
   ngOnInit(): void {
-    
+    window.addEventListener("resize",() =>this.setWidthSize())
   }
 
   onEnviar(){

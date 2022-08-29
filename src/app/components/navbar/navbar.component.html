@@ -4,7 +4,8 @@
       <i class="bi bi-list"></i>
     </button>
     <a class="navbar-brand text-dark-mostaza" routerLink="/home">
-      <h2>Pensando en Casa</h2>
+      <h2 *ngIf="width >= 375">Pensando en Casa</h2>
+      <h2 *ngIf="width < 375">PEC</h2>
     </a>
     
 
