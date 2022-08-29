@@ -34,7 +34,13 @@ export class FirebaseStorageService {
 
   obtenerImgURL(nombre:string | Nullable<string>):any{
     if (nombre !== null){
-      return 'https://firebasestorage.googleapis.com/v0/b/storification-5a9f7.appspot.com/o/assets%2Fimages%2F'+nombre+'?alt=media';
+      
+      if (!nombre.includes("https://firebasestorage.googleapis.com")){
+        return 'https://firebasestorage.googleapis.com/v0/b/storification-5a9f7.appspot.com/o/assets%2Fimages%2F'+nombre+'?alt=media';
+      }else{
+        return nombre;
+      }
+      
     }else{ return null}
   }
   reemplazarEspacio(word:string){

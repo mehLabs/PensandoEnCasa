@@ -34,11 +34,7 @@ export class CartComponent implements OnInit {
   }
 
   obtenerImgURL(img:string){
-    if (!img.includes("https://firebasestorage.googleapis.com")){
-      return this.firebase.obtenerImgURL(img);
-    }else{
-      return img;
-    }
+    return this.firebase.obtenerImgURL(img);
   }
 
   removeItem(product:Producto,i:number){
