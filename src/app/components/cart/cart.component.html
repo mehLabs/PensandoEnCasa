@@ -5,7 +5,7 @@
   <div class="card" *ngFor="let product of products; index as productId">
     <div class="row g-0">
       <div class="col-4">
-        <img alt="description of" [title]="'imagen de' + product.nombre" [src]="firebase.obtenerImgURL(product.img1)" class="miniatura rounded-start ">
+        <img alt="description of" [title]="'imagen de' + product.nombre" [src]="obtenerImgURL(product.img1)" class="miniatura rounded-start ">
       </div>
       <div class="col-8 d-flex flex-column justify-content-between">
         <div>
