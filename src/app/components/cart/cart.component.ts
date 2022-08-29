@@ -33,7 +33,7 @@ export class CartComponent implements OnInit {
 
   }
 
-  obtenerImgURL(img:string){
+  obtenerImgURL(img:string|null){
     return this.firebase.obtenerImgURL(img);
   }
 
